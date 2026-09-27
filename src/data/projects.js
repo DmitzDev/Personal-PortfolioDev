@@ -98,7 +98,7 @@ export const projects = [
       "Integrated client inquiry form with automated dispatch",
     ],
     image: PortfolioImg,
-    liveDemo: "#",
+    liveDemo: "https://mitchdevportfolio.vercel.app/",
     github: "https://github.com/DmitzDev/Personal-PortfolioDev",
   },
 ];
