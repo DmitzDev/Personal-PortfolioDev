@@ -156,7 +156,7 @@ export function Hero() {
             <div className="hardware-spec-plate">
               <div className="spec-row-main">
                 <span className="spec-name">{personalInfo.name.toUpperCase()} • DEVELOPER</span>
-                <span className="spec-tag">FULL-STACK</span>
+                <span className="spec-tag">JUNIOR FRONT-END</span>
               </div>
               <div className="spec-divider"></div>
               <div className="spec-items-grid">
