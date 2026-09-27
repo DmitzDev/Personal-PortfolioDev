@@ -1,0 +1,83 @@
+import React, { useState, useEffect } from 'react';
+
+import { useScrollSpy } from '../../hooks/useScrollSpy';
+import { ThemeToggle } from '../shared/ThemeToggle';
+import { personalInfo } from '../../data/personalInfo';
+import { MobileBottomNav } from './MobileBottomNav';
+import './Navbar.css';
+
+const navLinks = [
+  { id: 'hero', label: 'Home' },
+  { id: 'about', label: 'About' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'certificates', label: 'Certificates' },
+  { id: 'services', label: 'Services' },
+  { id: 'contact', label: 'Contact' },
+];
+
+export function Navbar() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const sectionIds = navLinks.map(link => link.id);
+  const activeSection = useScrollSpy(sectionIds, 200);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollTo = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <>
+      <header className={`navbar ${isScrolled ? 'scrolled glass-card' : ''}`}>
+        <div className="container navbar-container">
+          <a href="#hero" className="logo-container" onClick={(e) => { e.preventDefault(); scrollTo('hero'); }}>
+            <img src={personalInfo.logoImage} alt="Logo" className="nav-logo-img" />
+            <span className="logo text-gradient">{personalInfo.logoText}</span>
+          </a>
+
+          {/* Desktop Nav */}
+          <nav className="desktop-nav">
+            <ul className="nav-links">
+              {navLinks.map((link) => (
+                <li key={link.id}>
+                  <a
+                    href={`#${link.id}`}
+                    className={`nav-link ${activeSection === link.id ? 'active' : ''}`}
+                    onClick={(e) => { e.preventDefault(); scrollTo(link.id); }}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <div className="nav-actions">
+              <ThemeToggle />
+              <a href={personalInfo.resumeUrl} className="btn-resume" target="_blank" rel="noopener noreferrer">
+                Resume
+              </a>
+            </div>
+          </nav>
+
+          {/* Mobile Top Header (Just Theme Toggle) */}
+          <div className="mobile-nav-toggle">
+            <ThemeToggle />
+          </div>
+        </div>
+      </header>
+
+      {/* New Mobile Bottom Navigation (Moved outside header to fix scroll bug) */}
+      <MobileBottomNav activeSection={activeSection} scrollTo={scrollTo} />
+    </>
+  );
+}

@@ -1,0 +1,180 @@
+.mobile-bottom-nav-container {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .mobile-bottom-nav-container {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+
+  .mobile-bottom-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    height: 70px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid var(--glass-border);
+    border-radius: 24px 24px 0 0;
+    box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-items-left,
+  .nav-items-right {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+  }
+
+  .nav-item {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    padding: 0.75rem;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .nav-item:hover,
+  .nav-item.active {
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .nav-item:active {
+    transform: scale(0.85);
+  }
+
+  /* Center Cutout and FAB */
+  .nav-center-cutout {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 70px;
+  }
+
+  /* Fake the cutout using a before element */
+  .nav-center-cutout::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    width: 70px;
+    height: 70px;
+    background: transparent;
+    border-radius: 50%;
+    box-shadow: 0 35px 0 0 var(--glass-bg);
+    z-index: -1;
+  }
+
+  .fab-button {
+    position: absolute;
+    top: -25px; /* Floats above the navbar */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--gradient-accent);
+    border: 6px solid var(--bg-primary); /* Simulates the gap between button and navbar */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 8px 16px rgba(var(--accent-rgb, 2, 132, 199), 0.4);
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 10;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .fab-button:active {
+    transform: scale(0.9);
+  }
+
+  .fab-button.active {
+    background: var(--text-primary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .fab-icon {
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .fab-icon.rotate {
+    transform: rotate(135deg); /* Rotates plus into an X */
+  }
+
+  /* Popup Menu */
+  .fab-popup-menu {
+    position: absolute;
+    bottom: 45px; /* Center point behind the plus button */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    z-index: 999;
+  }
+
+  .fab-popup-item {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-md);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition-delay: 0s; /* Reset delay on close */
+    cursor: pointer;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .fab-popup-menu.open .fab-popup-item {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    /* Move to target coordinates defined by inline CSS variables */
+    transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1);
+    transition-delay: var(--delay); /* Staggered delay on open */
+  }
+
+  .fab-popup-item:hover,
+  .fab-popup-item:active {
+    background: var(--bg-primary);
+    color: var(--accent);
+    transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1.1) !important;
+  }
+
+  .fab-popup-item svg {
+    color: var(--accent);
+  }
+}
