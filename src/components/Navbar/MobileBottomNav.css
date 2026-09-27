@@ -1,3 +1,4 @@
+/* Professional Precision Mobile Navigation Dock */
 .mobile-bottom-nav-container {
   display: none;
 }
@@ -8,175 +9,112 @@
     position: fixed;
     bottom: 0;
     left: 0;
+    right: 0;
     width: 100%;
     max-width: 100%;
     z-index: 1000;
     box-sizing: border-box;
+    pointer-events: none;
+    padding: 0 0.75rem max(0.6rem, env(safe-area-inset-bottom)) 0.75rem;
   }
 
-  .mobile-bottom-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    height: 70px;
+  .mobile-dock-nav {
+    pointer-events: auto;
     width: 100%;
-    box-sizing: border-box;
+    max-width: 520px;
+    margin: 0 auto;
     background: var(--bg-secondary);
+    border: 1px solid var(--border);
     border-top: 1px solid var(--skeuo-bevel-top);
-    border-radius: 20px 20px 0 0;
-    box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.35);
+    border-radius: 1.15rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), var(--skeuo-extruded-sm);
+    padding: 0.35rem 0.45rem;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
   }
 
-  .nav-items-left,
-  .nav-items-right {
+  .mobile-dock-list {
     display: flex;
     align-items: center;
     justify-content: space-around;
     list-style: none;
     margin: 0;
     padding: 0;
-    flex: 1;
+    width: 100%;
   }
 
-  .nav-item {
-    background: none;
-    border: none;
-    color: var(--text-secondary);
-    padding: 0.75rem;
-    cursor: pointer;
-    border-radius: 50%;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  .mobile-dock-item {
+    flex: 1;
     display: flex;
+    justify-content: center;
+  }
+
+  .dock-btn {
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    padding: 0.4rem 0.2rem;
+    border-radius: 0.75rem;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     -webkit-tap-highlight-color: transparent;
+    position: relative;
   }
 
-  .nav-item:hover,
-  .nav-item.active {
-    color: var(--accent);
-    transform: translateY(-2px);
+  .dock-btn:active {
+    transform: scale(0.92);
   }
 
-  .nav-item:active {
-    transform: scale(0.85);
-  }
-
-  /* Center Cutout and FAB */
-  .nav-center-cutout {
+  .dock-icon-wrapper {
     position: relative;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80px;
-    height: 70px;
-  }
-
-  /* Fake the cutout using a before element */
-  .nav-center-cutout::before {
-    content: '';
-    position: absolute;
-    top: -20px;
-    width: 70px;
-    height: 70px;
-    background: transparent;
-    border-radius: 50%;
-    box-shadow: 0 35px 0 0 var(--bg-secondary);
-    z-index: -1;
-  }
-
-  .fab-button {
-    position: absolute;
-    top: -25px; /* Floats above the navbar */
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: var(--gradient-accent);
-    border: 6px solid var(--bg-primary); /* Simulates the gap between button and navbar */
-    color: white;
-    display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 8px 16px rgba(var(--accent-rgb, 2, 132, 199), 0.4);
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    z-index: 10;
-    -webkit-tap-highlight-color: transparent;
+    height: 22px;
   }
 
-  .fab-button:active {
-    transform: scale(0.9);
+  .dock-icon {
+    transition: transform 0.2s ease, color 0.2s ease;
   }
 
-  .fab-button.active {
-    background: var(--text-primary);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  }
-
-  .fab-icon {
-    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  }
-
-  .fab-icon.rotate {
-    transform: rotate(135deg); /* Rotates plus into an X */
-  }
-
-  /* Popup Menu */
-  .fab-popup-menu {
+  .dock-active-dot {
     position: absolute;
-    bottom: 45px; /* Center point behind the plus button */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 0;
-    z-index: 999;
-  }
-
-  .fab-popup-item {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    width: 54px;
-    height: 54px;
+    top: -3px;
+    right: -4px;
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
-    background: var(--glass-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid var(--glass-border);
-    color: var(--text-primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: var(--shadow-md);
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    transition-delay: 0s; /* Reset delay on close */
-    cursor: pointer;
-    text-decoration: none;
-    -webkit-tap-highlight-color: transparent;
+    background: var(--accent);
+    box-shadow: 0 0 6px var(--accent);
   }
 
-  .fab-popup-menu.open .fab-popup-item {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    /* Move to target coordinates defined by inline CSS variables */
-    transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1);
-    transition-delay: var(--delay); /* Staggered delay on open */
+  .dock-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-top: 0.2rem;
+    transition: color 0.2s ease;
   }
 
-  .fab-popup-item:hover,
-  .fab-popup-item:active {
-    background: var(--bg-primary);
+  .dock-btn.active {
     color: var(--accent);
-    transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1.1) !important;
+    background: var(--bg-tertiary);
+    box-shadow: var(--skeuo-recessed-sm);
   }
 
-  .fab-popup-item svg {
+  .dock-btn.active .dock-icon {
     color: var(--accent);
+    transform: scale(1.08);
+  }
+
+  .dock-btn.active .dock-label {
+    color: var(--accent);
+    font-weight: 700;
   }
 }

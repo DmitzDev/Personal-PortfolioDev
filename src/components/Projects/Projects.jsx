@@ -105,11 +105,20 @@ export function Projects() {
 
                   {/* Tech stack pills */}
                   <div className="project-tech-pills">
-                    {project.technologies.slice(0, 4).map(tech => (
-                      <span key={tech} className="tech-pill">{tech}</span>
+                    {project.technologies.slice(0, 4).map((tech, idx) => (
+                      <span key={tech} className={`tech-pill ${idx >= 2 ? 'desktop-only-pill' : ''}`}>
+                        {tech}
+                      </span>
                     ))}
+                    {project.technologies.length > 2 && (
+                      <span className="tech-pill muted mobile-only-pill">
+                        +{project.technologies.length - 2}
+                      </span>
+                    )}
                     {project.technologies.length > 4 && (
-                      <span className="tech-pill muted">+{project.technologies.length - 4} more</span>
+                      <span className="tech-pill muted desktop-only-pill">
+                        +{project.technologies.length - 4} more
+                      </span>
                     )}
                   </div>
 
@@ -121,9 +130,11 @@ export function Projects() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="project-action-link primary"
+                        title="Live Demo"
+                        aria-label="Live Demo"
                       >
-                        <span>Live Demo</span>
-                        <ExternalLink size={14} />
+                        <span className="action-text">Live Demo</span>
+                        <ExternalLink size={13} />
                       </a>
                     )}
                     {project.github && project.github !== '#' && (
@@ -132,16 +143,19 @@ export function Projects() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="project-action-link"
+                        title="Source Code"
+                        aria-label="Source Code"
                       >
-                        <GithubIcon size={15} />
-                        <span>Source</span>
+                        <GithubIcon size={14} />
+                        <span className="action-text">Source</span>
                       </a>
                     )}
                     <button
                       className="project-details-btn"
                       onClick={() => setSelectedProject(project)}
                     >
-                      Case Study →
+                      <span className="desktop-btn-text">Case Study →</span>
+                      <span className="mobile-btn-text">Study →</span>
                     </button>
                   </div>
                 </div>
