@@ -246,6 +246,18 @@
   align-items: flex-end;
   justify-content: center;
   margin-bottom: 1.25rem;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.portrait-stage {
+  position: relative;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 }
 
 .chamber-spotlight {
@@ -259,13 +271,62 @@
 }
 
 .chassis-portrait {
-  position: relative;
-  max-height: 96%;
-  width: auto;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.5));
   z-index: 2;
+  transition: opacity 0.35s ease-in-out, transform 0.35s ease;
+  pointer-events: none;
 }
+
+.chassis-portrait.portrait-serious.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.chassis-portrait.portrait-serious.faded {
+  opacity: 0;
+  transform: scale(0.98);
+}
+
+.chassis-portrait.portrait-smile.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.chassis-portrait.portrait-smile.faded {
+  opacity: 0;
+  transform: scale(0.98);
+}
+
+/* 8-bit Pixel Shades perfectly aligned to the eyes with 1.5deg natural tilt */
+.chassis-shades {
+  position: absolute;
+  top: 27.8%;
+  left: 46.5%;
+  transform: translate(-50%, -50%) rotate(-1.5deg);
+  width: 37%;
+  z-index: 4;
+  pointer-events: none;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.75));
+}
+
+.chassis-shades.hidden {
+  opacity: 0;
+  transform: translate(-50%, -180%) rotate(-5deg) scale(1.1);
+}
+
+.chassis-shades.visible {
+  opacity: 1;
+  transform: translate(-50%, -50%) rotate(-1.5deg) scale(1);
+}
+
+
 
 .chamber-base-shadow {
   position: absolute;
@@ -351,7 +412,7 @@
 @media (max-width: 992px) {
   .hero-container {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2.5rem;
   }
 
   .hero-visual-wrapper {
@@ -364,17 +425,47 @@
 }
 
 @media (max-width: 576px) {
+  .hero-container {
+    gap: 2rem;
+    padding-top: 1rem;
+  }
+
+  .hardware-chassis {
+    max-width: 100%;
+    padding: 1.5rem 1rem 1.15rem 1rem;
+  }
+
+  .portrait-chamber {
+    height: 275px;
+  }
+
   .hero-gauges-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.45rem;
+    margin-bottom: 2rem;
+  }
+
+  .gauge-card {
+    padding: 0.75rem 0.35rem;
+  }
+
+  .gauge-val {
+    font-size: 1.25rem;
+  }
+
+  .gauge-label {
+    font-size: 0.6rem;
   }
 
   .hero-actions {
     flex-direction: column;
     align-items: stretch;
     width: 100%;
+    gap: 0.75rem;
   }
 
   .btn-primary, .btn-secondary, .btn-resume-tactile {
     width: 100%;
+    justify-content: center;
   }
 }

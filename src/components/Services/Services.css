@@ -233,6 +233,11 @@
 }
 
 @media (max-width: 576px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
   .process-steps-grid {
     grid-template-columns: 1fr;
   }

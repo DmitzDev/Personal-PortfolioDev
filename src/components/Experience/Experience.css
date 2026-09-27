@@ -474,15 +474,35 @@
   .experience-controls-bar {
     flex-direction: column;
     align-items: stretch;
+    gap: 1rem;
   }
 
   .experience-tabs {
-    flex-direction: column;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .exp-tab-btn {
+    flex: 1 1 auto;
+    justify-content: center;
+    padding: 0.55rem 0.85rem;
+    font-size: 0.775rem;
+  }
+
+  .btn-resume-download {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .timeline-card {
+    padding: 1.35rem 1.15rem;
   }
 
   .timeline-card-header {
     flex-direction: column;
     align-items: flex-start;
+    gap: 0.5rem;
   }
 
   .timeline-meta-wrap {

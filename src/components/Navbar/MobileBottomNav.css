@@ -18,12 +18,10 @@
     align-items: center;
     padding: 0.5rem 1rem;
     height: 70px;
-    background: var(--glass-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-top: 1px solid var(--glass-border);
-    border-radius: 24px 24px 0 0;
-    box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.1);
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--skeuo-bevel-top);
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.35);
   }
 
   .nav-items-left,
@@ -80,7 +78,7 @@
     height: 70px;
     background: transparent;
     border-radius: 50%;
-    box-shadow: 0 35px 0 0 var(--glass-bg);
+    box-shadow: 0 35px 0 0 var(--bg-secondary);
     z-index: -1;
   }
 

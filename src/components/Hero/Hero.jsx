@@ -3,6 +3,8 @@ import { ArrowRight, Mail, FileText } from 'lucide-react';
 import { personalInfo } from '../../data/personalInfo';
 import { AnimateOnScroll } from '../shared/AnimateOnScroll';
 import mitchNoBg from '../../assets/Mitch-NoBG.png';
+import mitchSmileNoBg from '../../assets/MitchSmile-NoBG.png';
+import shadeImg from '../../assets/Shade.png';
 import './Hero.css';
 
 export function Hero() {
@@ -10,6 +12,7 @@ export function Hero() {
   const [displayText, setDisplayText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [typingSpeed, setTypingSpeed] = useState(80);
+  const [isSmiling, setIsSmiling] = useState(false);
 
   // Typing effect logic
   useEffect(() => {
@@ -122,14 +125,41 @@ export function Hero() {
               <span className="bezel-model">MODEL: SWE-2026</span>
             </div>
 
-            {/* Recessed Portrait Chamber (Uses transparent Mitch-NoBG image, NO white box) */}
-            <div className="portrait-chamber">
+            {/* Recessed Portrait Chamber (Interactive: Hover or Tap to swap to Smile + Shades) */}
+            <div
+              className={`portrait-chamber ${isSmiling ? 'active-smile' : ''}`}
+              onMouseEnter={() => setIsSmiling(true)}
+              onMouseLeave={() => setIsSmiling(false)}
+              onClick={() => setIsSmiling(prev => !prev)}
+              onTouchStart={() => setIsSmiling(prev => !prev)}
+              title="Click or tap to toggle smile & shades!"
+            >
               <div className="chamber-spotlight"></div>
-              <img
-                src={mitchNoBg}
-                alt={personalInfo.name}
-                className="chassis-portrait"
-              />
+
+              {/* Exact 1:1 Stage Wrapper so shades scale and align 100% with the face */}
+              <div className="portrait-stage">
+                {/* Default Focused Look */}
+                <img
+                  src={mitchNoBg}
+                  alt={personalInfo.name}
+                  className={`chassis-portrait portrait-serious ${isSmiling ? 'faded' : 'active'}`}
+                />
+
+                {/* Smiling Look */}
+                <img
+                  src={mitchSmileNoBg}
+                  alt={`${personalInfo.name} smiling`}
+                  className={`chassis-portrait portrait-smile ${isSmiling ? 'active' : 'faded'}`}
+                />
+
+                {/* Pixel Shades positioned exactly over eyes */}
+                <img
+                  src={shadeImg}
+                  alt="Shades"
+                  className={`chassis-shades ${isSmiling ? 'visible' : 'hidden'}`}
+                />
+              </div>
+
               <div className="chamber-base-shadow"></div>
             </div>
 

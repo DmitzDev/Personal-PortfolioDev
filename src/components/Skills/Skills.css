@@ -267,3 +267,19 @@
     gap: 0.5rem;
   }
 }
+
+@media (max-width: 576px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .skills-tabs-container {
+    gap: 0.4rem;
+  }
+
+  .skill-tab-btn {
+    padding: 0.45rem 0.95rem;
+    font-size: 0.75rem;
+  }
+}
