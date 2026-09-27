@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
-import { ExternalLink, Code2, Search, X } from 'lucide-react';
+import { ExternalLink, Search, X, CheckCircle2, Cpu } from 'lucide-react';
 import { projects, projectCategories } from '../../data/projects';
-import { SectionHeader } from '../shared/SectionHeader';
 import { AnimateOnScroll } from '../shared/AnimateOnScroll';
 import './Projects.css';
+
+const GithubIcon = ({ size = 16 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.02c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A4.8 4.8 0 0 0 8 18v4"></path>
+  </svg>
+);
 
 export function Projects() {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -16,8 +21,8 @@ export function Projects() {
     const query = searchQuery.toLowerCase();
     const matchesSearch =
       project.title.toLowerCase().includes(query) ||
-      project.shortDescription.toLowerCase().includes(query) ||
-      project.category.some(cat => cat.toLowerCase().includes(query)) ||
+      (project.subtitle && project.subtitle.toLowerCase().includes(query)) ||
+      project.description.toLowerCase().includes(query) ||
       project.technologies.some(tech => tech.toLowerCase().includes(query));
 
     return matchesCategory && matchesSearch;
@@ -26,10 +31,17 @@ export function Projects() {
   return (
     <section id="projects" className="section projects-section">
       <div className="container">
-        <SectionHeader title="Featured Projects" subtitle="My Portfolio" />
+        <div className="section-header">
+          <div className="section-tag">FEATURED CASE STUDIES</div>
+          <h2 className="section-title">Case Studies & Systems</h2>
+          <p className="section-subtitle">
+            Engineered with modern frontend architecture, robust cloud backends, and responsive user experiences.
+          </p>
+        </div>
 
+        {/* Filter Controls & Search */}
         <div className="projects-controls">
-          <AnimateOnScroll className="projects-filter">
+          <div className="projects-filter">
             {projectCategories.map(category => (
               <button
                 key={category}
@@ -39,143 +51,193 @@ export function Projects() {
                 {category}
               </button>
             ))}
-          </AnimateOnScroll>
+          </div>
 
-          <AnimateOnScroll className="projects-search glass-card">
-            <Search size={20} className="search-icon" />
+          <div className="projects-search glass-card">
+            <Search size={18} className="search-icon" />
             <input
               type="text"
-              placeholder="Search projects..."
+              placeholder="Search by tech or keyword..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="search-input"
             />
-          </AnimateOnScroll>
+          </div>
         </div>
 
+        {/* Case Studies Grid */}
         <div className="projects-grid">
           {filteredProjects.length > 0 ? (
             filteredProjects.map((project, index) => (
               <AnimateOnScroll
                 key={project.id}
                 animation="fade-up"
-                delay={index * 100}
-                className="project-card glass-card"
+                delay={index * 80}
+                className="case-study-card glass-card"
               >
+                {/* Visual Preview */}
                 <div
-                  className="project-image-container"
+                  className="project-image-wrapper"
                   onClick={() => setSelectedProject(project)}
                 >
-                  {project.image ? (
-                    <img src={project.image} alt={project.title} className="project-image" />
-                  ) : (
-                    <div className="project-image-placeholder">
-                      <span>{project.title.charAt(0)}</span>
-                    </div>
-                  )}
-                  <div className="project-overlay">
-                    <span className="view-details">View Details</span>
+                  <img src={project.image} alt={project.title} className="project-preview-img" />
+                  <div className="project-hover-overlay">
+                    <span className="view-case-study-btn">
+                      <Cpu size={16} />
+                      View Technical Breakdown
+                    </span>
                   </div>
                 </div>
 
-                <div className="project-content">
-                  <div className="project-meta">
-                    <span className="project-date">{project.date}</span>
-                    <span className={`project-status ${project.status === 'Completed' ? 'status-completed' : 'status-progress'}`}>
-                      {project.status}
-                    </span>
+                {/* Details */}
+                <div className="project-body">
+                  <div className="project-header-meta">
+                    <span className="project-cat-badge">{project.category[0]}</span>
+                    <span className="project-status-badge">{project.status}</span>
                   </div>
 
-                  <h3 className="project-title">{project.title}</h3>
-                  <p className="project-description">{project.shortDescription}</p>
+                  <h3 className="project-heading">{project.title}</h3>
+                  <p className="project-subtitle-text">{project.subtitle}</p>
+                  <p className="project-summary">{project.description}</p>
 
-                  <div className="project-tech">
+                  {/* Tech stack pills */}
+                  <div className="project-tech-pills">
                     {project.technologies.slice(0, 4).map(tech => (
-                      <span key={tech} className="tech-tag">{tech}</span>
+                      <span key={tech} className="tech-pill">{tech}</span>
                     ))}
                     {project.technologies.length > 4 && (
-                      <span className="tech-tag">+{project.technologies.length - 4} more</span>
+                      <span className="tech-pill muted">+{project.technologies.length - 4} more</span>
                     )}
                   </div>
 
-                  <div className="project-actions">
-                    <a href={project.liveDemo} className="btn-icon" target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
-                      <ExternalLink size={20} />
-                    </a>
-                    <a href={project.github} className="btn-icon" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository">
-                      <Code2 size={20} />
-                    </a>
+                  {/* Actions */}
+                  <div className="project-card-actions">
+                    {project.liveDemo && project.liveDemo !== '#' && (
+                      <a
+                        href={project.liveDemo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="project-action-link primary"
+                      >
+                        <span>Live Demo</span>
+                        <ExternalLink size={14} />
+                      </a>
+                    )}
+                    {project.github && project.github !== '#' && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="project-action-link"
+                      >
+                        <GithubIcon size={15} />
+                        <span>Source</span>
+                      </a>
+                    )}
+                    <button
+                      className="project-details-btn"
+                      onClick={() => setSelectedProject(project)}
+                    >
+                      Case Study →
+                    </button>
                   </div>
                 </div>
               </AnimateOnScroll>
             ))
           ) : (
-            <div className="no-results">
-              <p>No projects found matching your criteria.</p>
-              <button className="btn-secondary mt-4" onClick={() => { setSearchQuery(''); setActiveCategory('All'); }}>
-                Clear Filters
-              </button>
+            <div className="no-projects glass-card">
+              <p>No projects matched your criteria. Try resetting the filters.</p>
             </div>
           )}
         </div>
       </div>
 
-      {/* Project Modal */}
+      {/* Case Study Modal */}
       {selectedProject && (
-        <div className="modal-overlay" onClick={() => setSelectedProject(null)}>
-          <div className="modal-content glass-card" onClick={e => e.stopPropagation()}>
-            <button className="modal-close" onClick={() => setSelectedProject(null)}>
-              <X size={24} />
-            </button>
+        <div className="modal-backdrop" onClick={() => setSelectedProject(null)}>
+          <div className="modal-dialog glass-card" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <div className="modal-title-wrap">
+                <span className="modal-category">{selectedProject.category.join(' • ')}</span>
+                <h3 className="modal-title">{selectedProject.title}</h3>
+              </div>
+              <button
+                className="modal-close-btn"
+                onClick={() => setSelectedProject(null)}
+                aria-label="Close modal"
+              >
+                <X size={20} />
+              </button>
+            </div>
 
-            <div className="modal-hero">
-              {selectedProject.image ? (
-                <img src={selectedProject.image} alt={selectedProject.title} className="modal-hero-image" />
-              ) : (
-                <div className="modal-hero-placeholder">
-                  <span>{selectedProject.title.charAt(0)}</span>
+            <div className="modal-content-scroll">
+              <div className="modal-hero-image">
+                <img src={selectedProject.image} alt={selectedProject.title} />
+              </div>
+
+              <div className="modal-section-grid">
+                {selectedProject.challenge && (
+                  <div className="modal-box">
+                    <h4>🎯 The Challenge</h4>
+                    <p>{selectedProject.challenge}</p>
+                  </div>
+                )}
+                {selectedProject.solution && (
+                  <div className="modal-box">
+                    <h4>💡 Technical Architecture & Solution</h4>
+                    <p>{selectedProject.solution}</p>
+                  </div>
+                )}
+              </div>
+
+              {selectedProject.features && (
+                <div className="modal-features-list">
+                  <h4>Core Engineering Highlights</h4>
+                  <ul>
+                    {selectedProject.features.map((feature, idx) => (
+                      <li key={idx}>
+                        <CheckCircle2 size={16} className="feature-check-icon" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               )}
-              <div className="modal-hero-overlay">
-                <h2 className="modal-title">{selectedProject.title}</h2>
-                <div className="project-meta">
-                  <span className="project-date">{selectedProject.date}</span>
-                  <span className={`project-status ${selectedProject.status === 'Completed' ? 'status-completed' : 'status-progress'}`}>
-                    {selectedProject.status}
-                  </span>
+
+              <div className="modal-tech-stack">
+                <h4>System Tech Stack</h4>
+                <div className="tech-tags-wrap">
+                  {selectedProject.technologies.map(tech => (
+                    <span key={tech} className="tech-pill">{tech}</span>
+                  ))}
                 </div>
               </div>
             </div>
 
-            <div className="modal-body">
-              <div className="modal-info-main">
-                <h3>Overview</h3>
-                <p>{selectedProject.description}</p>
-
-                <h3>Key Features</h3>
-                <ul className="feature-list">
-                  {selectedProject.features.map((feature, idx) => (
-                    <li key={idx}>{feature}</li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="modal-info-sidebar">
-                <h3>Technologies</h3>
-                <div className="project-tech">
-                  {selectedProject.technologies.map(tech => (
-                    <span key={tech} className="tech-tag">{tech}</span>
-                  ))}
-                </div>
-
-                <div className="modal-actions">
-                  <a href={selectedProject.liveDemo} className="btn-primary" target="_blank" rel="noopener noreferrer">
-                    <ExternalLink size={18} className="mr-2" /> Live Demo
+            <div className="modal-footer">
+              <div className="modal-footer-links">
+                {selectedProject.liveDemo && selectedProject.liveDemo !== '#' && (
+                  <a
+                    href={selectedProject.liveDemo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary"
+                  >
+                    <span>Launch Live Application</span>
+                    <ExternalLink size={16} />
                   </a>
-                  <a href={selectedProject.github} className="btn-secondary" target="_blank" rel="noopener noreferrer">
-                    <Code2 size={18} className="mr-2" /> Source Code
+                )}
+                {selectedProject.github && selectedProject.github !== '#' && (
+                  <a
+                    href={selectedProject.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-secondary"
+                  >
+                    <GithubIcon size={16} />
+                    <span>View Repository</span>
                   </a>
-                </div>
+                )}
               </div>
             </div>
           </div>

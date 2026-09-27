@@ -1,8 +1,7 @@
 import React, { useState, useRef } from 'react';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Mail, MapPin, Send, Copy, Check, Clock, ShieldCheck } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { personalInfo } from '../../data/personalInfo';
-import { SectionHeader } from '../shared/SectionHeader';
 import { AnimateOnScroll } from '../shared/AnimateOnScroll';
 import './Contact.css';
 
@@ -11,18 +10,25 @@ export function Contact() {
     name: '',
     email: '',
     subject: '',
-    message: ''
+    message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
+  const [copiedEmail, setCopiedEmail] = useState(false);
+
+  const form = useRef();
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(personalInfo.email);
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2500);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
-
-  const form = useRef();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,140 +44,181 @@ export function Contact() {
         setIsSubmitting(false);
         setSubmitStatus('success');
         setFormData({ name: '', email: '', subject: '', message: '' });
-        setTimeout(() => setSubmitStatus(null), 5000);
+        setTimeout(() => setSubmitStatus(null), 6000);
       }, (error) => {
         setIsSubmitting(false);
         setSubmitStatus('error');
-        setErrorMessage(error.text || error.message || 'Unknown error occurred');
+        setErrorMessage(error.text || error.message || 'Failed to dispatch email. Please email directly.');
         console.error('EmailJS Error:', error);
-        setTimeout(() => setSubmitStatus(null), 10000);
+        setTimeout(() => setSubmitStatus(null), 8000);
       });
   };
 
   return (
-    <section id="contact" className="section contact-section bg-secondary">
+    <section id="contact" className="section contact-section">
       <div className="container">
-        <SectionHeader title="Contact Me" subtitle="Get in Touch" />
+        <div className="section-header">
+          <div className="section-tag">GET IN TOUCH</div>
+          <h2 className="section-title">Let's Build Something Exceptional</h2>
+          <p className="section-subtitle">
+            Whether you have an upcoming web project, need an MVP engineered, or want to discuss full-stack contracting — my inbox is open.
+          </p>
+        </div>
 
-        <div className="contact-content">
-          <AnimateOnScroll className="contact-info">
-            <h3>Let's talk about everything!</h3>
-            <p className="contact-desc">
-              Don't like forms? Send me an email.
-            </p>
+        <div className="contact-grid">
+          {/* Direct Communication Channels */}
+          <AnimateOnScroll animation="fade-up" delay={50} className="contact-info-col">
+            <div className="contact-info-card glass-card">
+              <h3 className="info-card-title">Get in Touch Directly</h3>
+              <p className="info-card-desc">
+                Prefer direct communication over filling out forms? Feel free to copy my direct email or connect through WhatsApp.
+              </p>
 
-            <div className="info-list">
-              <div className="info-item glass-card">
-                <div className="info-icon-box">
-                  <Mail size={24} />
+              {/* Quick Copy Email Box */}
+              <div className="copy-email-box">
+                <div className="email-display">
+                  <Mail size={18} className="email-icon" />
+                  <span className="email-address">{personalInfo.email}</span>
                 </div>
-                <div>
-                  <h4>Email</h4>
-                  <p><a href={`mailto:${personalInfo.email}`}>{personalInfo.email}</a></p>
-                </div>
+                <button
+                  type="button"
+                  className="copy-btn"
+                  onClick={handleCopyEmail}
+                  title="Copy email to clipboard"
+                >
+                  {copiedEmail ? (
+                    <>
+                      <Check size={15} className="copied-icon" />
+                      <span>Copied!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy size={15} />
+                      <span>Copy</span>
+                    </>
+                  )}
+                </button>
               </div>
 
-              <div className="info-item glass-card">
-                <div className="info-icon-box">
-                  <Phone size={24} />
+              {/* Guarantees & SLA List */}
+              <div className="contact-sla-list">
+                <div className="sla-item">
+                  <Clock size={18} className="sla-icon" />
+                  <div>
+                    <h4>Fast Turnaround</h4>
+                    <p>Responses guaranteed within 24 hours (UTC+8).</p>
+                  </div>
                 </div>
-                <div>
-                  <h4>Phone</h4>
-                  <p><a href={`tel:${personalInfo.phone}`}>{personalInfo.phone}</a></p>
-                </div>
-              </div>
 
-              <div className="info-item glass-card">
-                <div className="info-icon-box">
-                  <MapPin size={24} />
+                <div className="sla-item">
+                  <ShieldCheck size={18} className="sla-icon" />
+                  <div>
+                    <h4>Contract & NDA Ready</h4>
+                    <p>Open for scoped freelance contracts and milestone agreements.</p>
+                  </div>
                 </div>
-                <div>
-                  <h4>Location</h4>
-                  <p>{personalInfo.location}</p>
+
+                <div className="sla-item">
+                  <MapPin size={18} className="sla-icon" />
+                  <div>
+                    <h4>Location & Availability</h4>
+                    <p>{personalInfo.location}</p>
+                  </div>
                 </div>
               </div>
             </div>
           </AnimateOnScroll>
 
-          <AnimateOnScroll delay={200} className="contact-form-wrapper glass-card">
-            <form ref={form} className="contact-form" onSubmit={handleSubmit}>
-              <div className="form-row">
+          {/* Inquiry Form */}
+          <AnimateOnScroll animation="fade-up" delay={150} className="contact-form-col">
+            <div className="contact-form-card glass-card">
+              <h3 className="form-card-title">Send a Direct Message</h3>
+              <p className="form-card-desc">Fill in the project details below and I'll review your scope.</p>
+
+              <form ref={form} className="inquiry-form" onSubmit={handleSubmit}>
+                <div className="form-row">
+                  <div className="form-group">
+                    <label htmlFor="name">Your Name</label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      placeholder="e.g. Alex Morgan"
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="email">Your Email</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      placeholder="e.g. alex@company.com"
+                    />
+                  </div>
+                </div>
+
                 <div className="form-group">
-                  <label htmlFor="name">Your Name</label>
+                  <label htmlFor="subject">Subject / Project Scope</label>
                   <input
                     type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
                     onChange={handleChange}
                     required
-                    placeholder="John Doe"
+                    placeholder="e.g. Full-Stack Web App Development"
                   />
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="email">Your Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
+                  <label htmlFor="message">Project Requirements & Timeline</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="4"
+                    value={formData.message}
                     onChange={handleChange}
                     required
-                    placeholder="john@example.com"
-                  />
+                    placeholder="Describe your project, target launch date, and key features..."
+                  ></textarea>
                 </div>
-              </div>
 
-              <div className="form-group">
-                <label htmlFor="subject">Subject</label>
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                  placeholder="Project Inquiry"
-                />
-              </div>
+                <button
+                  type="submit"
+                  className="btn-primary submit-btn"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <span>Sending Proposal...</span>
+                  ) : (
+                    <>
+                      <span>Dispatch Message</span>
+                      <Send size={16} />
+                    </>
+                  )}
+                </button>
 
-              <div className="form-group">
-                <label htmlFor="message">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows="5"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  placeholder="Tell me about your project..."
-                ></textarea>
-              </div>
-
-              <button
-                type="submit"
-                className={`btn-primary submit-btn ${isSubmitting ? 'submitting' : ''}`}
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? (
-                  <span className="loader-dots">Sending</span>
-                ) : (
-                  <>Send Message <Send size={18} className="ml-2" /></>
+                {submitStatus === 'success' && (
+                  <div className="submit-alert success">
+                    <Check size={18} />
+                    <span>Message received! I'll review your project details and respond shortly.</span>
+                  </div>
                 )}
-              </button>
 
-              {submitStatus === 'success' && (
-                <div className="submit-success">
-                  Message sent successfully! I'll get back to you soon.
-                </div>
-              )}
-              {submitStatus === 'error' && (
-                <div className="submit-error" style={{ marginTop: '1rem', padding: '1rem', background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', borderRadius: '0.75rem', textAlign: 'center' }}>
-                  Failed: {errorMessage}
-                </div>
-              )}
-            </form>
+                {submitStatus === 'error' && (
+                  <div className="submit-alert error">
+                    <span>{errorMessage}</span>
+                  </div>
+                )}
+              </form>
+            </div>
           </AnimateOnScroll>
         </div>
       </div>

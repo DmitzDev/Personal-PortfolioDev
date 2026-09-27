@@ -1,23 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { ArrowRight, Mail, FileText } from 'lucide-react';
 import { personalInfo } from '../../data/personalInfo';
 import { AnimateOnScroll } from '../shared/AnimateOnScroll';
-import { useTheme } from '../../hooks/useTheme';
+import mitchNoBg from '../../assets/Mitch-NoBG.png';
 import './Hero.css';
 
-import { useMouseTilt } from '../../hooks/useMouseTilt';
-import shadeImage from '../../assets/Shade.png';
-import uddLogo from '../../assets/UDDlogo.jpg';
-import soeLogo from '../../assets/SOE.jpg';
-import cessLogo from '../../assets/Cess.jpg';
-
 export function Hero() {
-  const { theme } = useTheme();
   const [roleIndex, setRoleIndex] = useState(0);
   const [displayText, setDisplayText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
-  const [typingSpeed, setTypingSpeed] = useState(100);
-  const [showShades, setShowShades] = useState(false);
-  const tilt = useMouseTilt(15);
+  const [typingSpeed, setTypingSpeed] = useState(80);
 
   // Typing effect logic
   useEffect(() => {
@@ -26,15 +18,14 @@ export function Hero() {
 
       if (isDeleting) {
         setDisplayText(currentRole.substring(0, displayText.length - 1));
-        setTypingSpeed(50); // Faster when deleting
+        setTypingSpeed(40);
       } else {
         setDisplayText(currentRole.substring(0, displayText.length + 1));
-        setTypingSpeed(100); // Normal typing speed
+        setTypingSpeed(80);
       }
 
       if (!isDeleting && displayText === currentRole) {
-        // Pause at the end of typing
-        setTimeout(() => setIsDeleting(true), 1500);
+        setTimeout(() => setIsDeleting(true), 2000);
       } else if (isDeleting && displayText === '') {
         setIsDeleting(false);
         setRoleIndex((prev) => (prev + 1) % personalInfo.roles.length);
@@ -47,84 +38,123 @@ export function Hero() {
 
   return (
     <section id="hero" className="hero-section">
-      <div className="hero-background">
-        <div className="gradient-sphere sphere-1"></div>
-        <div className="gradient-sphere sphere-2"></div>
-        <div className="mesh-overlay"></div>
-      </div>
-
       <div className="container hero-container">
-        {/* Mobile ONLY: Badge Text */}
-        <div className="mobile-only-badge">
-          <div className="hero-badge glass-card">
-            <span className="typing-text">{displayText}</span><span className="cursor">|</span>
-          </div>
-        </div>
-
-        <AnimateOnScroll animation="fade-up" delay={100} className="hero-content">
-          {/* Desktop ONLY: Badge and Logos */}
-          <div className="hero-badge-container desktop-only-badge">
-            <div className="hero-badge glass-card">
-              <span className="typing-text">{displayText}</span><span className="cursor">|</span>
-            </div>
-            <div className="hero-logos">
-              <img src={uddLogo} alt="UDD" className="hero-logo" />
-              <img src={soeLogo} alt="SOE" className="hero-logo" />
-              <img src={cessLogo} alt="CESS" className="hero-logo" />
-            </div>
+        {/* Left Column: Client Proposition & Actions */}
+        <AnimateOnScroll animation="fade-up" delay={50} className="hero-content">
+          {/* Tactile Hardware Status Indicator */}
+          <div className="hero-status-tag">
+            <span className="led-socket">
+              <span className="led-diode"></span>
+            </span>
+            <span className="status-label">STATUS: READY FOR CLIENT CONTRACTS & PROJECTS</span>
           </div>
 
           <h1 className="hero-title">
-            I Am <span className="text-gradient">MitchDev.</span><br />
-            I build digital<br />
-            experiences.
+            Building <span className="title-accent">fast, modern</span> web apps & digital products.
           </h1>
 
+          <div className="hero-role-console">
+            <span className="console-prompt">&gt;</span>
+            <span className="console-text">{displayText}</span>
+            <span className="console-cursor">_</span>
+          </div>
+
           <p className="hero-description">
-            {personalInfo.bio}
+            I'm <strong>{personalInfo.name} ({personalInfo.nickname})</strong>. I design, build, and deploy production-ready web platforms with modern React, scalable Node.js/Firebase backends, and responsive tactile interfaces.
           </p>
 
+          {/* Tactile Metric Gauges */}
+          <div className="hero-gauges-grid">
+            <div className="gauge-card">
+              <span className="gauge-val">15+</span>
+              <span className="gauge-label">Shipped Builds</span>
+            </div>
+            <div className="gauge-card">
+              <span className="gauge-val">&lt; 24h</span>
+              <span className="gauge-label">Response SLA</span>
+            </div>
+            <div className="gauge-card">
+              <span className="gauge-val">100%</span>
+              <span className="gauge-label">Clean Architecture</span>
+            </div>
+          </div>
+
+          {/* Physical Buttons */}
           <div className="hero-actions">
-            <a href="#projects" className="btn-primary">View Projects</a>
-            <a href="#contact" className="btn-secondary glass-card">Get in Touch</a>
+            <a href="#projects" className="btn-primary">
+              <span>View Case Studies</span>
+              <ArrowRight size={17} />
+            </a>
+            <a href="#contact" className="btn-secondary">
+              <Mail size={17} />
+              <span>Initiate Contact</span>
+            </a>
+            <a
+              href={personalInfo.resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-resume-tactile"
+              title="Download verified resume"
+            >
+              <FileText size={16} />
+              <span>Resume PDF</span>
+            </a>
           </div>
         </AnimateOnScroll>
 
-        <AnimateOnScroll animation="fade-up" delay={300} className="hero-image-wrapper">
-          <div
-            className="image-container"
-            ref={tilt.ref}
-            style={{ ...tilt.style, transformStyle: 'preserve-3d' }}
-            onMouseEnter={() => setShowShades(true)}
-            onMouseLeave={() => setShowShades(false)}
-            onTouchStart={() => setShowShades(!showShades)}
-          >
-            <div className="image-glow"></div>
-            <div className="portraits-wrapper">
-              <img
-                src="/Mitch.png"
-                alt={personalInfo.name}
-                className={`portrait-image smooth-image ${theme === 'dark' ? 'visible' : 'hidden'}`}
-              />
-              <img
-                src="/MitchSmile.png"
-                alt={personalInfo.name}
-                className={`portrait-image smooth-image ${theme === 'light' ? 'visible' : 'hidden'}`}
-              />
+        {/* Right Column: Tactile Hardware Instrument Plaque (Replaces the ugly terminal) */}
+        <AnimateOnScroll animation="fade-up" delay={150} className="hero-visual-wrapper">
+          <div className="hardware-chassis">
+            {/* Corner Mechanical Screws */}
+            <span className="screw screw-tl"></span>
+            <span className="screw screw-tr"></span>
+            <span className="screw screw-bl"></span>
+            <span className="screw screw-br"></span>
+
+            {/* Top Control Bezel */}
+            <div className="chassis-bezel-top">
+              <div className="bezel-left">
+                <span className="led-socket">
+                  <span className="led-diode"></span>
+                </span>
+                <span className="bezel-label">SYSTEM ID: MITCHDEV</span>
+              </div>
+              <span className="bezel-model">MODEL: SWE-2026</span>
             </div>
 
-            <img
-              src={shadeImage}
-              alt="Shades"
-              className={`shades-image ${showShades ? 'visible' : ''}`}
-            />
-          </div>
+            {/* Recessed Portrait Chamber (Uses transparent Mitch-NoBG image, NO white box) */}
+            <div className="portrait-chamber">
+              <div className="chamber-spotlight"></div>
+              <img
+                src={mitchNoBg}
+                alt={personalInfo.name}
+                className="chassis-portrait"
+              />
+              <div className="chamber-base-shadow"></div>
+            </div>
 
-          {/* Mobile ONLY: Logos Below Image */}
-          <div className="hero-logos mobile-only-logos">
-            <img src={uddLogo} alt="UDD" className="hero-logo" />
-            <img src={soeLogo} alt="SOE" className="hero-logo" />
-            <img src={cessLogo} alt="CESS" className="hero-logo" />
+            {/* Stamped Metal Specification Plaque */}
+            <div className="hardware-spec-plate">
+              <div className="spec-row-main">
+                <span className="spec-name">{personalInfo.name.toUpperCase()} • DEVELOPER</span>
+                <span className="spec-tag">FULL-STACK</span>
+              </div>
+              <div className="spec-divider"></div>
+              <div className="spec-items-grid">
+                <div className="spec-item">
+                  <span className="spec-k">CORE STACK</span>
+                  <span className="spec-v">React • Node • Firebase • Vite</span>
+                </div>
+                <div className="spec-item">
+                  <span className="spec-k">FOCUS</span>
+                  <span className="spec-v">Web Apps &amp; Production UX</span>
+                </div>
+                <div className="spec-item">
+                  <span className="spec-k">LOCATION</span>
+                  <span className="spec-v">Philippines (UTC+8) • Remote</span>
+                </div>
+              </div>
+            </div>
           </div>
         </AnimateOnScroll>
       </div>

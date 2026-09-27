@@ -4,7 +4,7 @@ import { personalInfo } from '../../data/personalInfo';
 import { socialLinks } from '../../data/socialLinks';
 import './Footer.css';
 
-const SocialIconSVG = ({ name, size = 20 }) => {
+const SocialIconSVG = ({ name, size = 18 }) => {
   switch (name) {
     case 'Github':
       return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.02c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A4.8 4.8 0 0 0 8 18v4"></path></svg>;
@@ -29,24 +29,25 @@ export function Footer() {
               <img src={personalInfo.logoImage} alt="Logo" className="footer-logo-img" />
               <span className="logo text-gradient">{personalInfo.logoText}</span>
             </a>
-            <p className="footer-bio">{personalInfo.bio.substring(0, 100)}...</p>
+            <p className="footer-bio">{personalInfo.title} • {personalInfo.valueProposition}</p>
           </div>
-          
+
           <div className="footer-links">
-            <h4>Quick Links</h4>
+            <h4>Navigation</h4>
             <ul>
-              <li><a href="#about">About</a></li>
-              <li><a href="#experience">Experience</a></li>
-              <li><a href="#projects">Projects</a></li>
+              <li><a href="#projects">Case Studies</a></li>
+              <li><a href="#skills">Capabilities</a></li>
               <li><a href="#services">Services</a></li>
+              <li><a href="#experience">Experience</a></li>
+              <li><a href="#contact">Contact</a></li>
             </ul>
           </div>
-          
+
           <div className="footer-social">
             <h4>Connect</h4>
             <div className="social-icons">
               {socialLinks.map(link => (
-                <a 
+                <a
                   key={link.id || link.name}
                   href={link.url}
                   target="_blank"
@@ -54,18 +55,22 @@ export function Footer() {
                   className="social-icon"
                   aria-label={link.name}
                 >
-                  <SocialIconSVG name={link.icon} size={20} />
+                  <SocialIconSVG name={link.icon} size={18} />
                 </a>
               ))}
             </div>
+            <div className="footer-status-pill">
+              <span className="footer-dot"></span>
+              <span>Available for freelance contracts</span>
+            </div>
           </div>
         </div>
-        
+
         <div className="footer-bottom">
           <p className="footer-credits">
-            Designed & Built with <Icons.Heart size={14} className="heart-icon" /> by <span className="text-gradient">MitchDev.</span>
+            Engineered with modern React & Vite. Designed for performance and client results.
           </p>
-          <p>&copy; {currentYear} MitchDev. All rights reserved.</p>
+          <p>&copy; {currentYear} {personalInfo.name} ({personalInfo.logoText}). All rights reserved.</p>
         </div>
       </div>
     </footer>

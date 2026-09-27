@@ -6,12 +6,13 @@ export function Loader({ onComplete }) {
   const [isFadingOut, setIsFadingOut] = useState(false);
 
   useEffect(() => {
+    // Ultra-snappy transition so clients experience instantaneous FCP
     const timer = setTimeout(() => {
       setIsFadingOut(true);
       setTimeout(() => {
         if (onComplete) onComplete();
-      }, 500); // 500ms match fade-out CSS animation duration
-    }, 2000); // Loader displays for 2s
+      }, 200);
+    }, 300);
 
     return () => clearTimeout(timer);
   }, [onComplete]);

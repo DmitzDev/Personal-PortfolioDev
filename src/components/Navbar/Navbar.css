@@ -4,16 +4,16 @@
   left: 0;
   width: 100%;
   z-index: 1000;
-  transition: all 0.3s ease;
-  padding: 1.5rem 0;
+  transition: all 0.2s ease;
+  padding: 1.25rem 0;
+  background: transparent;
 }
 
 .navbar.scrolled {
-  padding: 1rem 0;
-  border-radius: 0;
-  border-left: none;
-  border-right: none;
-  border-top: none;
+  padding: 0.85rem 0;
+  background: var(--bg-primary);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid var(--border);
 }
 
 .navbar-container {
@@ -25,7 +25,7 @@
 .logo-container {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
   text-decoration: none;
 }
 
@@ -33,107 +33,86 @@
   width: 32px;
   height: 32px;
   object-fit: contain;
-  transition: transform 0.3s ease, filter 0.3s ease;
-  animation: pulseGlowImg 3s infinite alternate;
-}
-
-.logo-container:hover .nav-logo-img {
-  transform: scale(1.1) rotate(-5deg);
-  filter: drop-shadow(0 0 8px var(--accent));
-}
-
-@keyframes pulseGlowImg {
-  0% { filter: drop-shadow(0 0 2px var(--accent)); }
-  100% { filter: drop-shadow(0 0 8px var(--accent)); }
 }
 
 .navbar .logo {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 800;
   letter-spacing: -0.02em;
-  transition: color 0.3s ease;
-}
-
-.logo-container:hover .logo {
-  color: var(--accent);
+  color: var(--text-primary);
 }
 
 .desktop-nav {
   display: flex;
   align-items: center;
-  gap: 1.5rem; /* Reduced from 2.5rem */
+  gap: 1.25rem;
 }
 
 .nav-links {
   display: flex;
-  gap: 0.5rem; /* Reduced from 1.5rem */
+  gap: 0.4rem;
+  background: var(--bg-secondary);
+  box-shadow: var(--skeuo-extruded-sm);
+  border-top: 1px solid var(--skeuo-bevel-top);
+  border-bottom: 1px solid var(--skeuo-bevel-bottom);
+  padding: 0.35rem 0.5rem;
+  border-radius: 9999px;
 }
 
 .nav-link {
-  font-size: 0.9rem; /* Slightly smaller font to save space */
-  font-weight: 500;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 600;
   color: var(--text-secondary);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  padding: 0.4rem 0.75rem; /* Reduced padding */
-  border-radius: 8px;
+  padding: 0.4rem 0.85rem;
+  border-radius: 9999px;
+  transition: all 0.15s ease;
 }
 
 .nav-link:hover {
-  color: var(--accent);
-  background: var(--glass-bg);
-  box-shadow: var(--shadow-sm);
-  transform: translateY(-2px);
-}
-
-.nav-link:active {
-  transform: translateY(2px) scale(0.95);
-  background: var(--nav-active-bg);
-  color: var(--nav-active-text);
-  box-shadow: var(--shadow-glow);
+  color: var(--text-primary);
 }
 
 .nav-link.active {
-  font-weight: 600;
-  background: var(--nav-active-bg);
-  color: var(--nav-active-text);
-  box-shadow: var(--shadow-glow);
+  background: var(--bg-tertiary);
+  box-shadow: var(--skeuo-recessed-sm);
+  color: var(--accent);
 }
 
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 .btn-resume {
-  background: var(--gradient-accent);
-  color: white;
-  padding: 0.6rem 1.25rem;
-  border-radius: 999px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'JetBrains Mono', monospace;
+  background: var(--bg-tertiary);
+  color: var(--accent);
+  padding: 0.55rem 1.15rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  font-size: 0.825rem;
+  box-shadow: var(--skeuo-extruded-sm);
+  border-top: 1px solid var(--skeuo-bevel-top);
+  border-bottom: 1px solid var(--skeuo-bevel-bottom);
+  transition: all 0.15s ease;
   display: inline-block;
-  box-shadow: var(--shadow-sm);
-  margin-left: 0.5rem; /* Pushes the resume button further right */
 }
 
 .btn-resume:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  color: var(--text-primary);
+  box-shadow: var(--skeuo-extruded);
 }
 
 .btn-resume:active {
-  transform: translateY(2px) scale(0.95);
-  box-shadow: var(--shadow-glow);
+  box-shadow: var(--skeuo-recessed);
 }
 
 .mobile-nav-toggle {
   display: none;
 }
 
-/* Mobile Responsive */
 @media (max-width: 1024px) {
   .desktop-nav {
     display: none;

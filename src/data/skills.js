@@ -1,32 +1,153 @@
-export const skills = [
-  // Frontend
-  { name: "HTML5", category: "Frontend", percentage: 90, icon: "html5" },
-  { name: "CSS3", category: "Frontend", percentage: 80, icon: "css3" },
-  { name: "JavaScript", category: "Frontend", percentage: 70, icon: "javascript" },
-  { name: "React", category: "Frontend", percentage: 60, icon: "react" },
-  { name: "Tailwind CSS", category: "Frontend", percentage: 20, icon: "tailwindcss" },
-  { name: "Bootstrap", category: "Frontend", percentage: 0, icon: "bootstrap" },
-
-  // Backend
-  { name: "Python", category: "Backend", percentage: 60, icon: "python" },
-  { name: "Flask", category: "Backend", percentage: 50, icon: "flask" },
-  { name: "Node.js", category: "Backend", percentage: 60, icon: "nodejs" },
-  { name: "PHP", category: "Backend", percentage: 50, icon: "php" },
-
-  // Database
-  { name: "SQLite", category: "Database", percentage: 60, icon: "sqlite" },
-  { name: "MySQL", category: "Database", percentage: 70, icon: "mysql" },
-  { name: "Firebase", category: "Database", percentage: 100, icon: "firebase" },
-  { name: "Supabase", category: "Database", percentage: 60, icon: "supabase" },
-
-  // Tools
-  { name: "Git", category: "Tools", percentage: 25, icon: "git" },
-  { name: "GitHub", category: "Tools", percentage: 80, icon: "github" },
-  { name: "VS Code", category: "Tools", percentage: 90, icon: "vscode" },
-  { name: "Figma", category: "Tools", percentage: 10, icon: "figma" },
-  { name: "Canva", category: "Tools", percentage: 80, icon: "canva" },
-  { name: "Postman", category: "Tools", percentage: 0, icon: "postman" },
-  { name: "Antigravity", category: "Tools", percentage: 100, icon: "antigravity" },
+export const skillCategories = [
+  "All",
+  "Frontend Architecture",
+  "Backend & APIs",
+  "Databases & Cloud",
+  "Tooling & Workflow",
 ];
 
-export const skillCategories = ["All", "Frontend", "Backend", "Database", "Tools"];
+export const skills = [
+  // Frontend Architecture
+  {
+    name: "React",
+    category: "Frontend Architecture",
+    badge: "Core",
+    level: "Advanced",
+    icon: "react",
+    description: "Component architecture, custom hooks, state management, SPA routing, performance tuning.",
+  },
+  {
+    name: "JavaScript (ES6+)",
+    category: "Frontend Architecture",
+    badge: "Core",
+    level: "Advanced",
+    icon: "javascript",
+    description: "Async/await, DOM APIs, modern ES features, closures, modular architecture.",
+  },
+  {
+    name: "HTML5 / Semantic",
+    category: "Frontend Architecture",
+    badge: "Production",
+    level: "Expert",
+    icon: "html5",
+    description: "Accessible markup, SEO foundations, semantic structure, responsive viewport management.",
+  },
+  {
+    name: "CSS3 / Modern Styling",
+    category: "Frontend Architecture",
+    badge: "Production",
+    level: "Advanced",
+    icon: "css3",
+    description: "CSS variables, Flexbox/Grid, glassmorphism, responsive media queries, fluid animations.",
+  },
+  {
+    name: "Tailwind CSS",
+    category: "Frontend Architecture",
+    badge: "Utility",
+    level: "Proficient",
+    icon: "tailwindcss",
+    description: "Rapid UI prototyping, design token mapping, responsive layout utilities.",
+  },
+
+  // Backend & APIs
+  {
+    name: "Node.js",
+    category: "Backend & APIs",
+    badge: "Core",
+    level: "Proficient",
+    icon: "nodejs",
+    description: "RESTful API development, server-side business logic, npm ecosystem, asynchronous processing.",
+  },
+  {
+    name: "Python",
+    category: "Backend & APIs",
+    badge: "Language",
+    level: "Proficient",
+    icon: "python",
+    description: "Data scripting, automation, backend service development, backend algorithm design.",
+  },
+  {
+    name: "Flask",
+    category: "Backend & APIs",
+    badge: "Microframework",
+    level: "Proficient",
+    icon: "flask",
+    description: "Lightweight web endpoints, routing, blueprint architecture, JSON serialization.",
+  },
+  {
+    name: "PHP",
+    category: "Backend & APIs",
+    badge: "Backend",
+    level: "Proficient",
+    icon: "php",
+    description: "Server scripting, MySQL integration, legacy and relational web service maintenance.",
+  },
+
+  // Databases & Cloud
+  {
+    name: "Firebase",
+    category: "Databases & Cloud",
+    badge: "Cloud Stack",
+    level: "Advanced",
+    icon: "firebase",
+    description: "Cloud Firestore, Firebase Authentication, Cloud Storage, web hosting and deployment.",
+  },
+  {
+    name: "MySQL",
+    category: "Databases & Cloud",
+    badge: "Relational",
+    level: "Proficient",
+    icon: "mysql",
+    description: "Schema design, relational table structuring, indexed queries, data normalization.",
+  },
+  {
+    name: "Supabase",
+    category: "Databases & Cloud",
+    badge: "Cloud SQL",
+    level: "Proficient",
+    icon: "supabase",
+    description: "Postgres backend, Row Level Security, instant REST APIs, real-time client subscriptions.",
+  },
+  {
+    name: "SQLite",
+    category: "Databases & Cloud",
+    badge: "Embedded",
+    level: "Proficient",
+    icon: "sqlite",
+    description: "Local application storage, relational querying, rapid testing databases.",
+  },
+
+  // Tooling & Workflow
+  {
+    name: "Git & GitHub",
+    category: "Tooling & Workflow",
+    badge: "DevOps",
+    level: "Advanced",
+    icon: "github",
+    description: "Version control, feature branching, pull request reviews, GitHub actions/workflows.",
+  },
+  {
+    name: "VS Code",
+    category: "Tooling & Workflow",
+    badge: "Editor",
+    level: "Advanced",
+    icon: "vscode",
+    description: "Custom keybindings, debugging tools, extensions, workspace configs.",
+  },
+  {
+    name: "Figma",
+    category: "Tooling & Workflow",
+    badge: "Design",
+    level: "Proficient",
+    icon: "figma",
+    description: "UI/UX wireframing, high-fidelity mockups, design handoff, component tokenization.",
+  },
+  {
+    name: "Postman",
+    category: "Tooling & Workflow",
+    badge: "API Testing",
+    level: "Proficient",
+    icon: "postman",
+    description: "API endpoint validation, automated request suites, header authentication testing.",
+  },
+];

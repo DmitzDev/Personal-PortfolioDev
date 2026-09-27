@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 import { useScrollSpy } from '../../hooks/useScrollSpy';
 import { ThemeToggle } from '../shared/ThemeToggle';
 import { personalInfo } from '../../data/personalInfo';
@@ -7,13 +6,11 @@ import { MobileBottomNav } from './MobileBottomNav';
 import './Navbar.css';
 
 const navLinks = [
-  { id: 'hero', label: 'Home' },
-  { id: 'about', label: 'About' },
-  { id: 'skills', label: 'Skills' },
-  { id: 'projects', label: 'Projects' },
-  { id: 'experience', label: 'Experience' },
-  { id: 'certificates', label: 'Certificates' },
+  { id: 'hero', label: 'Overview' },
+  { id: 'projects', label: 'Case Studies' },
+  { id: 'skills', label: 'Capabilities' },
   { id: 'services', label: 'Services' },
+  { id: 'experience', label: 'Experience' },
   { id: 'contact', label: 'Contact' },
 ];
 
@@ -24,7 +21,7 @@ export function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 40);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -41,7 +38,14 @@ export function Navbar() {
     <>
       <header className={`navbar ${isScrolled ? 'scrolled glass-card' : ''}`}>
         <div className="container navbar-container">
-          <a href="#hero" className="logo-container" onClick={(e) => { e.preventDefault(); scrollTo('hero'); }}>
+          <a
+            href="#hero"
+            className="logo-container"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollTo('hero');
+            }}
+          >
             <img src={personalInfo.logoImage} alt="Logo" className="nav-logo-img" />
             <span className="logo text-gradient">{personalInfo.logoText}</span>
           </a>
@@ -54,7 +58,10 @@ export function Navbar() {
                   <a
                     href={`#${link.id}`}
                     className={`nav-link ${activeSection === link.id ? 'active' : ''}`}
-                    onClick={(e) => { e.preventDefault(); scrollTo(link.id); }}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      scrollTo(link.id);
+                    }}
                   >
                     {link.label}
                   </a>
@@ -63,20 +70,25 @@ export function Navbar() {
             </ul>
             <div className="nav-actions">
               <ThemeToggle />
-              <a href={personalInfo.resumeUrl} className="btn-resume" target="_blank" rel="noopener noreferrer">
+              <a
+                href={personalInfo.resumeUrl}
+                className="btn-resume"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Resume
               </a>
             </div>
           </nav>
 
-          {/* Mobile Top Header (Just Theme Toggle) */}
+          {/* Mobile Top Header (Theme Toggle) */}
           <div className="mobile-nav-toggle">
             <ThemeToggle />
           </div>
         </div>
       </header>
 
-      {/* New Mobile Bottom Navigation (Moved outside header to fix scroll bug) */}
+      {/* Mobile Bottom Navigation */}
       <MobileBottomNav activeSection={activeSection} scrollTo={scrollTo} />
     </>
   );

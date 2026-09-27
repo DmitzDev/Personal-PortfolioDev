@@ -1,70 +1,14 @@
-import React, { useState, useRef } from 'react';
-import { Rocket } from 'lucide-react';
-import { GitHubCalendar } from 'react-github-calendar';
+import React, { useState } from 'react';
 import { skills, skillCategories } from '../../data/skills';
-import { SectionHeader } from '../shared/SectionHeader';
 import { AnimateOnScroll } from '../shared/AnimateOnScroll';
+import { GitHubCalendar } from 'react-github-calendar';
 import { useTheme } from '../../hooks/useTheme';
+import { Terminal } from 'lucide-react';
 import './Skills.css';
-
-const getProficiency = (percentage) => {
-  if (percentage >= 85) return "Advanced";
-  if (percentage >= 70) return "Intermediate";
-  if (percentage >= 40) return "Familiar";
-  if (percentage > 0) return "Beginner";
-  return "Learning";
-};
 
 export function Skills() {
   const [activeCategory, setActiveCategory] = useState('All');
-  const calendarRef = useRef(null);
   const { theme } = useTheme();
-
-  // Drag to scroll logic
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
-  const [dragMoved, setDragMoved] = useState(false);
-
-  const handleMouseDown = (e) => {
-    setIsDragging(true);
-    setDragMoved(false);
-    setStartX(e.pageX - calendarRef.current.offsetLeft);
-    setScrollLeft(calendarRef.current.scrollLeft);
-  };
-
-  const handleMouseLeave = () => {
-    setIsDragging(false);
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
-
-  const handleMouseMove = (e) => {
-    if (!isDragging) return;
-    e.preventDefault();
-    setDragMoved(true);
-    const x = e.pageX - calendarRef.current.offsetLeft;
-    const walk = (x - startX) * 1.5; // Scroll speed multiplier
-    calendarRef.current.scrollLeft = scrollLeft - walk;
-  };
-
-  const handleLinkClick = (e) => {
-    if (dragMoved) {
-      e.preventDefault();
-    }
-  };
-
-  const scrollCalendar = (direction) => {
-    if (calendarRef.current) {
-      const scrollAmount = 350;
-      calendarRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth'
-      });
-    }
-  };
 
   const filteredSkills = activeCategory === 'All'
     ? skills
@@ -73,105 +17,110 @@ export function Skills() {
   return (
     <section id="skills" className="section skills-section">
       <div className="container">
-        <SectionHeader title="My Skills" subtitle="Technical Expertise" />
+        <div className="section-header">
+          <div className="section-tag">TECHNICAL ARCHITECTURE</div>
+          <h2 className="section-title">Core Engineering Capabilities</h2>
+          <p className="section-subtitle">
+            Focused on scalable full-stack development, modern component architecture, and high-performance cloud databases.
+          </p>
+        </div>
 
-        <AnimateOnScroll className="skills-filter">
+        {/* Category Tabs */}
+        <div className="skills-tabs-container">
           {skillCategories.map(category => (
             <button
               key={category}
-              className={`filter-btn ${activeCategory === category ? 'active' : ''}`}
+              className={`skill-tab-btn ${activeCategory === category ? 'active' : ''}`}
               onClick={() => setActiveCategory(category)}
             >
               {category}
             </button>
           ))}
-        </AnimateOnScroll>
+        </div>
 
+        {/* Skills Cards Grid */}
         <div className="skills-grid">
           {filteredSkills.map((skill, index) => (
             <AnimateOnScroll
               key={skill.name}
               animation="fade-up"
-              delay={index * 50}
+              delay={(index % 6) * 60}
               className="skill-card glass-card"
             >
-              <div className="skill-content">
-                <div className="skill-header">
-                  {skill.icon === 'antigravity' ? (
-                    <Rocket size={24} className="skill-icon" color="var(--accent)" />
-                  ) : (
-                    <img
-                      src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${skill.icon}/${skill.icon}-original.svg`}
-                      alt={skill.name}
-                      className="skill-icon"
-                      onError={(e) => {
-                        e.target.src = `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${skill.icon}/${skill.icon}-plain.svg`;
-                      }}
-                    />
-                  )}
-                  <h4 className="skill-name">{skill.name}</h4>
+              <div className="skill-card-top">
+                <div className="skill-icon-wrap">
+                  <img
+                    src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${skill.icon}/${skill.icon}-original.svg`}
+                    alt={skill.name}
+                    className="skill-devicon"
+                    onError={(e) => {
+                      e.target.src = `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${skill.icon}/${skill.icon}-plain.svg`;
+                    }}
+                  />
                 </div>
-                <span className={`skill-level level-${getProficiency(skill.percentage).toLowerCase()}`}>
-                  {getProficiency(skill.percentage)}
-                </span>
+                <div className="skill-meta-wrap">
+                  <h3 className="skill-name">{skill.name}</h3>
+                  <span className="skill-level-badge">{skill.badge || skill.level}</span>
+                </div>
               </div>
+
+              <p className="skill-description">{skill.description}</p>
             </AnimateOnScroll>
           ))}
         </div>
 
-        <AnimateOnScroll className="github-contributions-section" animation="fade-up" delay={200}>
-          <div className="github-contributions-header">
-            <div className="github-title-wrapper">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
-                alt="GitHub"
-                className="github-title-icon"
-              />
-              <h3>GitHub Contributions</h3>
-            </div>
-            <p>Live sync of my coding activity and commits</p>
+        {/* Continuous Tech Stack Marquee */}
+        <div className="skills-ticker-wrapper glass-card">
+          <div className="ticker-label">
+            <Terminal size={14} />
+            <span>PRODUCTION ARSENAL:</span>
           </div>
+          <div className="ticker-track-container">
+            <div className="ticker-track">
+              {[...skills, ...skills].map((item, idx) => (
+                <div key={`${item.name}-${idx}`} className="ticker-item">
+                  <img
+                    src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${item.icon}/${item.icon}-original.svg`}
+                    alt={item.name}
+                    className="ticker-icon"
+                    onError={(e) => {
+                      e.target.src = `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${item.icon}/${item.icon}-plain.svg`;
+                    }}
+                  />
+                  <span>{item.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
 
-          <div className="github-calendar-container">
-            <button className="calendar-scroll-btn left" onClick={() => scrollCalendar('left')} aria-label="Scroll left">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-            </button>
-
-            <div
-              className={`github-calendar-wrapper glass-card ${isDragging ? 'dragging' : ''}`}
-              ref={calendarRef}
-              onMouseDown={handleMouseDown}
-              onMouseLeave={handleMouseLeave}
-              onMouseUp={handleMouseUp}
-              onMouseMove={handleMouseMove}
+        {/* Verified GitHub Activity */}
+        <div className="github-activity-card glass-card">
+          <div className="github-card-header">
+            <div className="github-header-left">
+              <span className="live-status-dot"></span>
+              <h4>Live GitHub Contribution Activity</h4>
+            </div>
+            <a
+              href="https://github.com/DmitzDev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="github-profile-link"
             >
-              <div className="glow-effect"></div>
-              <a
-                href="https://github.com/DmitzDev"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="github-calendar-link"
-                onClick={handleLinkClick}
-              >
-                <GitHubCalendar
-                  username="DmitzDev"
-                  colorScheme={theme === 'dark' ? 'dark' : 'light'}
-                  blockSize={14}
-                  blockMargin={6}
-                  fontSize={14}
-                  theme={{
-                    dark: ['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353'],
-                    light: ['#ebedf0', '#9be9a8', '#40c463', '#30a14e', '#216e39']
-                  }}
-                />
-              </a>
-            </div>
-
-            <button className="calendar-scroll-btn right" onClick={() => scrollCalendar('right')} aria-label="Scroll right">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-            </button>
+              @DmitzDev on GitHub ↗
+            </a>
           </div>
-        </AnimateOnScroll>
+
+          <div className="github-calendar-scroll">
+            <GitHubCalendar
+              username="DmitzDev"
+              colorScheme={theme === 'dark' ? 'dark' : 'light'}
+              fontSize={12}
+              blockSize={13}
+              blockMargin={4}
+            />
+          </div>
+        </div>
       </div>
     </section>
   );
