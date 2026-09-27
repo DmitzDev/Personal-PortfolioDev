@@ -32,8 +32,8 @@ export function Projects() {
     <section id="projects" className="section projects-section">
       <div className="container">
         <div className="section-header">
-          <div className="section-tag">FEATURED CASE STUDIES</div>
-          <h2 className="section-title">Case Studies & Systems</h2>
+          <div className="section-tag">FEATURED PROJECTS</div>
+          <h2 className="section-title">Projects & Systems</h2>
           <p className="section-subtitle">
             Engineered with modern frontend architecture, robust cloud backends, and responsive user experiences.
           </p>
@@ -84,7 +84,7 @@ export function Projects() {
                   <div className="project-hover-overlay">
                     <span className="view-case-study-btn">
                       <FileText size={15} />
-                      View Case Study
+                      View Project
                     </span>
                   </div>
                 </div>
@@ -154,8 +154,8 @@ export function Projects() {
                       className="project-details-btn"
                       onClick={() => setSelectedProject(project)}
                     >
-                      <span className="desktop-btn-text">Case Study →</span>
-                      <span className="mobile-btn-text">Study →</span>
+                      <span className="desktop-btn-text">Project Details →</span>
+                      <span className="mobile-btn-text">Details →</span>
                     </button>
                   </div>
                 </div>

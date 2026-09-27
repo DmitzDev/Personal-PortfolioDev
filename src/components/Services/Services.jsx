@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, PenTool, Rocket, Server, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Layout, PenTool, Rocket, Server, ArrowRight } from 'lucide-react';
 import { services, clientProcess } from '../../data/services';
 import { AnimateOnScroll } from '../shared/AnimateOnScroll';
 import './Services.css';
@@ -47,18 +47,6 @@ export function Services() {
                 <h3 className="service-heading">{service.title}</h3>
                 <p className="service-tagline-text">{service.tagline}</p>
                 <p className="service-summary">{service.description}</p>
-
-                <div className="service-deliverables">
-                  <span className="deliverables-heading">Deliverables:</span>
-                  <ul>
-                    {service.deliverables.map((item, idx) => (
-                      <li key={idx}>
-                        <CheckCircle2 size={14} className="deliverable-icon" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
               </AnimateOnScroll>
             );
           })}

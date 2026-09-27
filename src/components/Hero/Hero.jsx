@@ -78,7 +78,7 @@ export function Hero() {
           {/* Physical Buttons */}
           <div className="hero-actions">
             <a href="#projects" className="btn-primary">
-              <span>View Case Studies</span>
+              <span>View Projects</span>
               <ArrowRight size={17} />
             </a>
             <a href="#contact" className="btn-secondary">

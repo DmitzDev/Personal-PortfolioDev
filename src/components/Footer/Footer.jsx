@@ -27,7 +27,7 @@ export function Footer() {
           <div className="footer-brand">
             <a href="#hero" className="logo-container">
               <img src={personalInfo.logoImage} alt="Logo" className="footer-logo-img" />
-              <span className="logo text-gradient">{personalInfo.logoText}</span>
+              <span className="logo">Mitch<span className="logo-accent">Dev.</span></span>
             </a>
             <p className="footer-bio">{personalInfo.title} • {personalInfo.valueProposition}</p>
           </div>
@@ -35,7 +35,7 @@ export function Footer() {
           <div className="footer-links">
             <h4>Navigation</h4>
             <ul>
-              <li><a href="#projects">Case Studies</a></li>
+              <li><a href="#projects">Projects</a></li>
               <li><a href="#skills">Capabilities</a></li>
               <li><a href="#services">Services</a></li>
               <li><a href="#experience">Experience</a></li>

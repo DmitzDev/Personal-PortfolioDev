@@ -7,7 +7,7 @@ import './Navbar.css';
 
 const navLinks = [
   { id: 'hero', label: 'Overview' },
-  { id: 'projects', label: 'Case Studies' },
+  { id: 'projects', label: 'Projects' },
   { id: 'skills', label: 'Capabilities' },
   { id: 'services', label: 'Services' },
   { id: 'experience', label: 'Experience' },
@@ -47,7 +47,7 @@ export function Navbar() {
             }}
           >
             <img src={personalInfo.logoImage} alt="Logo" className="nav-logo-img" />
-            <span className="logo text-gradient">{personalInfo.logoText}</span>
+            <span className="logo">Mitch<span className="logo-accent">Dev.</span></span>
           </a>
 
           {/* Desktop Nav */}
