@@ -21,27 +21,7 @@
   align-items: flex-start;
 }
 
-/* Status Tag */
-.hero-status-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  background: var(--bg-tertiary);
-  box-shadow: var(--skeuo-recessed-sm);
-  border-top: 1px solid var(--skeuo-bevel-bottom);
-  border-bottom: 1px solid var(--skeuo-bevel-top);
-  padding: 0.4rem 1rem;
-  border-radius: 9999px;
-  margin-bottom: 1.5rem;
-}
 
-.status-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--text-secondary);
-  letter-spacing: 0.04em;
-}
 
 /* Hero Title */
 .hero-title {
@@ -197,38 +177,9 @@
   border-left: var(--skeuo-border);
   border-right: var(--skeuo-border);
   border-radius: 1.25rem;
-  padding: 2.25rem 1.5rem 1.5rem 1.5rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
-}
-
-.chassis-bezel-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1.25rem;
-  padding: 0 0.25rem;
-}
-
-.bezel-left {
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
-}
-
-.bezel-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.725rem;
-  font-weight: 700;
-  color: var(--text-secondary);
-  letter-spacing: 0.05em;
-}
-
-.bezel-model {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.675rem;
-  font-weight: 600;
-  color: var(--text-muted);
 }
 
 /* Recessed Portrait Chamber */
@@ -306,10 +257,10 @@
 /* 8-bit Pixel Shades perfectly aligned to the eyes with 1.5deg natural tilt */
 .chassis-shades {
   position: absolute;
-  top: 27.8%;
-  left: 46.5%;
+  top: 31%;
+  left: 49.5%;
   transform: translate(-50%, -50%) rotate(-1.5deg);
-  width: 37%;
+  width: 35.5%;
   z-index: 4;
   pointer-events: none;
   transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);

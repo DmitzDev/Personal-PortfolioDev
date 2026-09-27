@@ -44,14 +44,6 @@ export function Hero() {
       <div className="container hero-container">
         {/* Left Column: Client Proposition & Actions */}
         <AnimateOnScroll animation="fade-up" delay={50} className="hero-content">
-          {/* Tactile Hardware Status Indicator */}
-          <div className="hero-status-tag">
-            <span className="led-socket">
-              <span className="led-diode"></span>
-            </span>
-            <span className="status-label">STATUS: READY FOR CLIENT CONTRACTS & PROJECTS</span>
-          </div>
-
           <h1 className="hero-title">
             Building <span className="title-accent">fast, modern</span> web apps & digital products.
           </h1>
@@ -105,7 +97,7 @@ export function Hero() {
           </div>
         </AnimateOnScroll>
 
-        {/* Right Column: Tactile Hardware Instrument Plaque (Replaces the ugly terminal) */}
+        {/* Right Column: Tactile Hardware Instrument Plaque */}
         <AnimateOnScroll animation="fade-up" delay={150} className="hero-visual-wrapper">
           <div className="hardware-chassis">
             {/* Corner Mechanical Screws */}
@@ -113,17 +105,6 @@ export function Hero() {
             <span className="screw screw-tr"></span>
             <span className="screw screw-bl"></span>
             <span className="screw screw-br"></span>
-
-            {/* Top Control Bezel */}
-            <div className="chassis-bezel-top">
-              <div className="bezel-left">
-                <span className="led-socket">
-                  <span className="led-diode"></span>
-                </span>
-                <span className="bezel-label">SYSTEM ID: MITCHDEV</span>
-              </div>
-              <span className="bezel-model">MODEL: SWE-2026</span>
-            </div>
 
             {/* Recessed Portrait Chamber (Interactive: Hover or Tap to swap to Smile + Shades) */}
             <div
