@@ -68,31 +68,7 @@
   color: var(--accent);
 }
 
-.footer-status-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 1.25rem;
-  padding: 0.4rem 0.85rem;
-  border-radius: 9999px;
-  background: var(--bg-tertiary);
-  box-shadow: var(--skeuo-recessed-sm);
-  border-top: 1px solid var(--skeuo-bevel-bottom);
-  border-bottom: 1px solid var(--skeuo-bevel-top);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--text-secondary);
-}
 
-.footer-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--led-green);
-  box-shadow: var(--led-glow);
-  flex-shrink: 0;
-}
 
 .social-icons {
   display: flex;

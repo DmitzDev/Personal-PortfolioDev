@@ -59,10 +59,6 @@ export function Footer() {
                 </a>
               ))}
             </div>
-            <div className="footer-status-pill">
-              <span className="footer-dot"></span>
-              <span>Available for freelance contracts</span>
-            </div>
           </div>
         </div>
 

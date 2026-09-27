@@ -44,8 +44,8 @@ export function Hero() {
       <div className="container hero-container">
         {/* Left Column: Client Proposition & Actions */}
         <AnimateOnScroll animation="fade-up" delay={50} className="hero-content">
-          {/* Role Console Badge */}
-          <div className="hero-role-console">
+          {/* Desktop Role Console Badge */}
+          <div className="hero-role-console desktop-hero-role">
             <span className="console-prompt">&gt;</span>
             <span className="console-text">{displayText}</span>
             <span className="console-cursor">_</span>
@@ -100,6 +100,13 @@ export function Hero() {
 
         {/* Right Column: Tactile Hardware Instrument Plaque */}
         <AnimateOnScroll animation="fade-up" delay={150} className="hero-visual-wrapper">
+          {/* Mobile-only Role Console (Placed above the portrait chassis on phone screens) */}
+          <div className="hero-role-console mobile-hero-role">
+            <span className="console-prompt">&gt;</span>
+            <span className="console-text">{displayText}</span>
+            <span className="console-cursor">_</span>
+          </div>
+
           <div className="hardware-chassis">
             {/* Corner Mechanical Screws */}
             <span className="screw screw-tl"></span>
