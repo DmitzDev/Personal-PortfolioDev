@@ -317,11 +317,11 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .scroll-to-top {
-    bottom: 1rem;
-    right: 1rem;
-    width: 40px;
-    height: 40px;
+    bottom: 5.5rem;
+    right: 1.25rem;
+    width: 42px;
+    height: 42px;
   }
 }

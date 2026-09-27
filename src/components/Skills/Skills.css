@@ -195,6 +195,9 @@
   border-bottom: 1px solid var(--skeuo-bevel-bottom);
   border-left: var(--skeuo-border);
   border-right: var(--skeuo-border);
+  max-width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .github-card-header {
@@ -237,6 +240,8 @@
 
 .github-calendar-scroll {
   overflow-x: auto;
+  max-width: 100%;
+  width: 100%;
   padding: 1rem;
   border-radius: 0.65rem;
   background: var(--bg-tertiary);
@@ -245,6 +250,8 @@
   border-bottom: 1px solid var(--skeuo-bevel-top);
   display: flex;
   justify-content: center;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
@@ -261,10 +268,18 @@
     width: 100%;
   }
 
+  .github-activity-card {
+    padding: 1.25rem 0.85rem;
+  }
+
   .github-card-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
+  }
+
+  .github-calendar-scroll {
+    justify-content: flex-start;
   }
 }
 

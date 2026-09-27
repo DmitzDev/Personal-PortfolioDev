@@ -80,6 +80,9 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
 }
 
 body {
@@ -91,6 +94,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
   transition: background-color 0.2s ease, color 0.2s ease;
   overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
+  position: relative;
+}
+
+#root,
+.app-container {
+  overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
 }
 
 code, pre, .font-mono {
@@ -126,8 +139,10 @@ h1, h2, h3, h4, h5, h6 {
 /* Layout Utilities */
 .container {
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   padding: 0 2rem;
+  box-sizing: border-box;
 }
 
 .section {
@@ -345,6 +360,9 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 2rem;
   }
   .container {
-    padding: 0 1.25rem;
+    padding: 0 1rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 }

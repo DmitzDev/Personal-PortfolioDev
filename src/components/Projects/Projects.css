@@ -77,8 +77,11 @@
 /* Tactile Case Studies Grid */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr));
   gap: 2.25rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .case-study-card {
@@ -93,6 +96,9 @@
   border-left: var(--skeuo-border);
   border-right: var(--skeuo-border);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .case-study-card:hover {

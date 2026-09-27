@@ -376,36 +376,50 @@
 }
 
 @media (max-width: 576px) {
+  .hero-section {
+    padding: 4.75rem 0 2rem 0;
+  }
+
   .hero-container {
-    gap: 2rem;
-    padding-top: 1rem;
+    gap: 1.75rem;
+    padding-top: 0.5rem;
   }
 
   .hardware-chassis {
+    width: 100%;
     max-width: 100%;
-    padding: 1.5rem 1rem 1.15rem 1rem;
+    box-sizing: border-box;
+    padding: 1.25rem 0.85rem 1rem 0.85rem;
   }
 
   .portrait-chamber {
     height: 275px;
+    max-width: 100%;
   }
 
   .hero-gauges-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: 0.45rem;
     margin-bottom: 2rem;
+    width: 100%;
+    max-width: 100%;
   }
 
   .gauge-card {
-    padding: 0.75rem 0.35rem;
+    padding: 0.75rem 0.25rem;
+    min-width: 0;
+    text-align: center;
+    align-items: center;
   }
 
   .gauge-val {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
   }
 
   .gauge-label {
-    font-size: 0.6rem;
+    font-size: 0.58rem;
+    word-break: break-word;
+    line-height: 1.2;
   }
 
   .hero-actions {
