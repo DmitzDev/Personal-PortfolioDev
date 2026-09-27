@@ -44,15 +44,16 @@ export function Hero() {
       <div className="container hero-container">
         {/* Left Column: Client Proposition & Actions */}
         <AnimateOnScroll animation="fade-up" delay={50} className="hero-content">
-          <h1 className="hero-title">
-            Building <span className="title-accent">fast, modern</span> web apps & digital products.
-          </h1>
-
+          {/* Role Console Badge */}
           <div className="hero-role-console">
             <span className="console-prompt">&gt;</span>
             <span className="console-text">{displayText}</span>
             <span className="console-cursor">_</span>
           </div>
+
+          <h1 className="hero-title">
+            Building <span className="title-accent">fast, modern</span> web apps & digital products.
+          </h1>
 
           <p className="hero-description">
             I'm <strong>{personalInfo.name} ({personalInfo.nickname})</strong>. I design, build, and deploy production-ready web platforms with modern React, scalable Node.js/Firebase backends, and responsive tactile interfaces.

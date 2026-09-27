@@ -450,11 +450,20 @@
   border-bottom: 1px solid var(--skeuo-bevel-top);
 }
 
+.modal-box-heading,
 .modal-box h4 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   font-size: 0.95rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
   color: var(--text-primary);
+}
+
+.modal-heading-icon {
+  color: var(--accent);
+  flex-shrink: 0;
 }
 
 .modal-box p {

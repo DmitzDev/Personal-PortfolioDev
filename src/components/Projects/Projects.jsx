@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ExternalLink, Search, X, CheckCircle2, Cpu } from 'lucide-react';
+import { ExternalLink, Search, X, CheckCircle2, FileText, Layers, Code2 } from 'lucide-react';
 import { projects, projectCategories } from '../../data/projects';
 import { AnimateOnScroll } from '../shared/AnimateOnScroll';
 import './Projects.css';
@@ -83,8 +83,8 @@ export function Projects() {
                   <img src={project.image} alt={project.title} className="project-preview-img" />
                   <div className="project-hover-overlay">
                     <span className="view-case-study-btn">
-                      <Cpu size={16} />
-                      View Technical Breakdown
+                      <FileText size={15} />
+                      View Case Study
                     </span>
                   </div>
                 </div>
@@ -201,13 +201,19 @@ export function Projects() {
               <div className="modal-section-grid">
                 {selectedProject.challenge && (
                   <div className="modal-box">
-                    <h4>🎯 The Challenge</h4>
+                    <h4 className="modal-box-heading">
+                      <Layers size={16} className="modal-heading-icon" />
+                      <span>Problem & Scope</span>
+                    </h4>
                     <p>{selectedProject.challenge}</p>
                   </div>
                 )}
                 {selectedProject.solution && (
                   <div className="modal-box">
-                    <h4>💡 Technical Architecture & Solution</h4>
+                    <h4 className="modal-box-heading">
+                      <Code2 size={16} className="modal-heading-icon" />
+                      <span>Architecture & Solution</span>
+                    </h4>
                     <p>{selectedProject.solution}</p>
                   </div>
                 )}
