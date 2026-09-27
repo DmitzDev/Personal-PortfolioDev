@@ -93,7 +93,10 @@ export function Projects() {
                 <div className="project-body">
                   <div className="project-header-meta">
                     <span className="project-cat-badge">{project.category[0]}</span>
-                    <span className="project-status-badge">{project.status}</span>
+                    <span className={`project-status-pill ${project.status === 'Completed' ? 'status-completed' : 'status-in-progress'}`}>
+                      <span className="status-led"></span>
+                      <span className="status-label">{project.status}</span>
+                    </span>
                   </div>
 
                   <h3 className="project-heading">{project.title}</h3>
@@ -158,7 +161,13 @@ export function Projects() {
           <div className="modal-dialog glass-card" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
               <div className="modal-title-wrap">
-                <span className="modal-category">{selectedProject.category.join(' • ')}</span>
+                <div className="modal-meta-row">
+                  <span className="modal-category">{selectedProject.category.join(' • ')}</span>
+                  <span className={`project-status-pill ${selectedProject.status === 'Completed' ? 'status-completed' : 'status-in-progress'}`}>
+                    <span className="status-led"></span>
+                    <span className="status-label">{selectedProject.status}</span>
+                  </span>
+                </div>
                 <h3 className="modal-title">{selectedProject.title}</h3>
               </div>
               <button

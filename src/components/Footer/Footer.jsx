@@ -67,10 +67,7 @@ export function Footer() {
         </div>
 
         <div className="footer-bottom">
-          <p className="footer-credits">
-            Engineered with modern React & Vite. Designed for performance and client results.
-          </p>
-          <p>&copy; {currentYear} {personalInfo.name} ({personalInfo.logoText}). All rights reserved.</p>
+          <p>&copy; {currentYear} MitchDev. All rights reserved.</p>
         </div>
       </div>
     </footer>

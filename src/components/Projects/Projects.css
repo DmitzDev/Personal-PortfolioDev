@@ -180,10 +180,55 @@
   border-radius: 0.35rem;
 }
 
-.project-status-badge {
+.project-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.7rem;
-  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.22rem 0.65rem;
+  border-radius: 9999px;
+  background: var(--bg-tertiary);
+  box-shadow: var(--skeuo-recessed-sm);
+  border: 1px solid var(--border);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.project-status-pill .status-led {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.project-status-pill.status-completed {
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.35);
+}
+
+.project-status-pill.status-completed .status-led {
+  background: #10b981;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.9), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+.project-status-pill.status-in-progress {
+  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.08);
+  border-color: rgba(245, 158, 11, 0.35);
+}
+
+.project-status-pill.status-in-progress .status-led {
+  background: #f59e0b;
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.9), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+  animation: statusLedPulse 1.8s infinite ease-in-out;
+}
+
+@keyframes statusLedPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.85); }
 }
 
 .project-heading {
@@ -317,13 +362,21 @@
   border-bottom: 1px solid var(--border);
 }
 
+.modal-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.45rem;
+  flex-wrap: wrap;
+}
+
 .modal-category {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.75rem;
   text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: 0.25rem;
-  display: block;
+  margin-bottom: 0;
+  display: inline-block;
 }
 
 .modal-title {
