@@ -130,10 +130,10 @@ export function Projects() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="project-action-link primary"
-                        title="Live Demo"
-                        aria-label="Live Demo"
+                        title="Live"
+                        aria-label="Live"
                       >
-                        <span className="action-text">Live Demo</span>
+                        <span className="action-text">Live</span>
                         <ExternalLink size={13} />
                       </a>
                     )}
