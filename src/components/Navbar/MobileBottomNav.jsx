@@ -1,40 +1,34 @@
 import React from 'react';
-import { Home, LayoutDashboard, Code2, Award, MessageSquare } from 'lucide-react';
+import { Home, FolderKanban, Cpu, Briefcase, Send } from 'lucide-react';
 import './MobileBottomNav.css';
 
 const navItems = [
   { id: 'hero', label: 'Home', icon: Home },
-  { id: 'projects', label: 'Projects', icon: LayoutDashboard },
-  { id: 'skills', label: 'Skills', icon: Code2 },
-  { id: 'experience', label: 'Experience', icon: Award },
-  { id: 'contact', label: 'Contact', icon: MessageSquare },
+  { id: 'projects', label: 'Work', icon: FolderKanban },
+  { id: 'skills', label: 'Stack', icon: Cpu },
+  { id: 'experience', label: 'Career', icon: Briefcase },
+  { id: 'contact', label: 'Reach', icon: Send },
 ];
 
 export function MobileBottomNav({ activeSection, scrollTo }) {
-  const handleNavClick = (id) => {
-    scrollTo(id);
-  };
-
   return (
-    <div className="mobile-bottom-nav-container">
-      <nav className="mobile-dock-nav" aria-label="Mobile Navigation">
-        <ul className="mobile-dock-list">
+    <div className="mobnav-dock-root">
+      <nav className="mobnav-dock" aria-label="Mobile Navigation">
+        <ul className="mobnav-list">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeSection === item.id;
             return (
-              <li key={item.id} className="mobile-dock-item">
+              <li key={item.id} className="mobnav-slot">
                 <button
                   type="button"
-                  className={`dock-btn ${isActive ? 'active' : ''}`}
-                  onClick={() => handleNavClick(item.id)}
+                  className={`mobnav-key ${isActive ? 'pressed' : ''}`}
+                  onClick={() => scrollTo(item.id)}
                   aria-label={item.label}
+                  aria-current={isActive ? 'page' : undefined}
                 >
-                  <span className="dock-icon-wrapper">
-                    <Icon size={19} className="dock-icon" />
-                    {isActive && <span className="dock-active-dot" />}
-                  </span>
-                  <span className="dock-label">{item.label}</span>
+                  <Icon size={18} strokeWidth={isActive ? 2.4 : 1.8} />
+                  <span className="mobnav-key-label">{item.label}</span>
                 </button>
               </li>
             );

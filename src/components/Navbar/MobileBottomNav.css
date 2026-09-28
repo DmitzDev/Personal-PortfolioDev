@@ -1,119 +1,111 @@
-/* Professional Precision Mobile Navigation Dock */
-.mobile-bottom-nav-container {
+/* ==========================================================================
+   MOBILE BOTTOM NAV — HARDWARE INSTRUMENT DOCK
+   Mirrors the desktop nav's skeuomorphic pill bar aesthetic.
+   Each nav item is a tactile keycap that depresses when active.
+   ========================================================================== */
+
+.mobnav-dock-root {
   display: none;
 }
 
 @media (max-width: 1024px) {
-  .mobile-bottom-nav-container {
+  .mobnav-dock-root {
     display: block;
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    width: 100%;
-    max-width: 100%;
     z-index: 1000;
-    box-sizing: border-box;
     pointer-events: none;
-    padding: 0 0.75rem max(0.6rem, env(safe-area-inset-bottom)) 0.75rem;
+    padding: 0 0.65rem max(0.55rem, env(safe-area-inset-bottom)) 0.65rem;
   }
 
-  .mobile-dock-nav {
+  /* ── Dock Chassis ──
+     Matches the desktop .nav-links pill bar: extruded body,
+     bevel highlights, same border-radius language. */
+  .mobnav-dock {
     pointer-events: auto;
     width: 100%;
-    max-width: 520px;
+    max-width: 420px;
     margin: 0 auto;
     background: var(--bg-secondary);
-    border: 1px solid var(--border);
+    border-radius: 0.85rem;
+    box-shadow:
+      var(--skeuo-extruded-sm),
+      0 8px 24px rgba(0, 0, 0, 0.35);
     border-top: 1px solid var(--skeuo-bevel-top);
-    border-radius: 1.15rem;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), var(--skeuo-extruded-sm);
-    padding: 0.35rem 0.45rem;
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--skeuo-bevel-bottom);
+    border-left: var(--skeuo-border);
+    border-right: var(--skeuo-border);
+    padding: 0.3rem;
   }
 
-  .mobile-dock-list {
+  .mobnav-list {
     display: flex;
-    align-items: center;
-    justify-content: space-around;
+    align-items: stretch;
+    justify-content: space-between;
     list-style: none;
     margin: 0;
     padding: 0;
-    width: 100%;
+    gap: 0.2rem;
   }
 
-  .mobile-dock-item {
+  .mobnav-slot {
     flex: 1;
     display: flex;
-    justify-content: center;
+    min-width: 0;
   }
 
-  .dock-btn {
+  /* ── Key Button ──
+     Each nav item is a physical keycap. Default state is raised (extruded).
+     Active state is pressed in (recessed) with accent color. */
+  .mobnav-key {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 0.2rem;
     width: 100%;
-    padding: 0.4rem 0.2rem;
-    border-radius: 0.75rem;
+    padding: 0.5rem 0.15rem;
+    border-radius: 0.6rem;
     background: transparent;
     border: none;
     color: var(--text-muted);
     cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     -webkit-tap-highlight-color: transparent;
+    transition:
+      color 0.15s ease,
+      background 0.15s ease,
+      box-shadow 0.15s ease,
+      transform 0.1s ease;
     position: relative;
   }
 
-  .dock-btn:active {
-    transform: scale(0.92);
+  .mobnav-key:active {
+    transform: scale(0.94);
   }
 
-  .dock-icon-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 22px;
-  }
-
-  .dock-icon {
-    transition: transform 0.2s ease, color 0.2s ease;
-  }
-
-  .dock-active-dot {
-    position: absolute;
-    top: -3px;
-    right: -4px;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 6px var(--accent);
-  }
-
-  .dock-label {
+  /* ── Key Label ── */
+  .mobnav-key-label {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.62rem;
+    font-size: 0.58rem;
     font-weight: 600;
-    letter-spacing: 0.02em;
-    margin-top: 0.2rem;
-    transition: color 0.2s ease;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    line-height: 1;
+    transition: color 0.15s ease;
   }
 
-  .dock-btn.active {
+  /* ── Pressed State ──
+     Mirrors .nav-link.active from the desktop nav:
+     recessed shadow, accent color, bg-tertiary fill. */
+  .mobnav-key.pressed {
     color: var(--accent);
     background: var(--bg-tertiary);
     box-shadow: var(--skeuo-recessed-sm);
   }
 
-  .dock-btn.active .dock-icon {
-    color: var(--accent);
-    transform: scale(1.08);
-  }
-
-  .dock-btn.active .dock-label {
+  .mobnav-key.pressed .mobnav-key-label {
     color: var(--accent);
     font-weight: 700;
   }

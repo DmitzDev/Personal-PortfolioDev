@@ -52,7 +52,7 @@ export function Hero() {
           </div>
 
           <h1 className="hero-title">
-            Hi, I'm <span className="title-accent">{personalInfo.name}</span> — Front-End Web Developer.
+            Hi, I'm <span className="title-accent">MitchDev.</span> Front-End Web Developer.
           </h1>
 
           <p className="hero-description">
