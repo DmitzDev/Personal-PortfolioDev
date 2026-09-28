@@ -1,9 +1,9 @@
 /* ==========================================================================
-   INTRO LOADER
-   Confident, quiet, hand-crafted. Nothing to prove.
+   INTRO LOADER WITH 3D BACKGROUND
+   Confident, quiet, hand-crafted.
    ========================================================================== */
 
-/* Overlay — solid dark background, full viewport */
+/* Overlay — fixed full viewport */
 .intro-loader {
   position: fixed;
   inset: 0;
@@ -11,23 +11,40 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg-primary, #0a0d14);
+  background: transparent;
   user-select: none;
   -webkit-user-select: none;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   3D BACKGROUND CANVAS
+   ========================================================================== */
+.intro-bg-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.intro-loader.is-revealing .intro-bg-canvas {
+  opacity: 0;
 }
 
 /* ==========================================================================
    CURTAINS — split reveal on exit
-   Two halves slide apart to expose the portfolio behind.
-   Uses the same cubic-bezier as Apple's sheet dismiss.
    ========================================================================== */
 .intro-curtain {
   position: absolute;
   left: 0;
   width: 100%;
-  height: 50%;
+  height: 50.5vh;
   background: var(--bg-primary, #0a0d14);
-  z-index: 2;
+  z-index: 1;
   will-change: transform;
   transition: transform 0.82s cubic-bezier(0.76, 0, 0.24, 1);
 }
@@ -42,16 +59,15 @@
 
 /* When revealing, curtains slide away */
 .intro-loader.is-revealing .intro-curtain--top {
-  transform: translateY(-100%);
+  transform: translateY(-101%);
 }
 
 .intro-loader.is-revealing .intro-curtain--bottom {
-  transform: translateY(100%);
+  transform: translateY(101%);
 }
 
 /* ==========================================================================
-   CENTER CONTENT — logo, wordmark, progress bar
-   Stacked vertically, perfectly centered, nothing extra.
+   CENTER CONTENT — circular logo, wordmark, progress bar
    ========================================================================== */
 .intro-center {
   position: relative;
@@ -59,7 +75,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.4rem;
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
@@ -68,28 +84,36 @@
   transform: scale(0.96);
 }
 
-/* Logo mark — prominent, elegant, well-proportioned */
+/* Logo mark — circular logo without unwanted container borders underneath */
 .intro-logomark {
-  width: 112px;
-  height: 112px;
-  border-radius: 50%;
-  background: var(--bg-tertiary, #161b26);
-  border: 1px solid var(--border, rgba(255, 255, 255, 0.12));
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(56, 189, 248, 0.08);
 }
 
 .intro-logomark__img {
-  width: 68px;
-  height: 68px;
-  object-fit: contain;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(56, 189, 248, 0.25);
+  border: 2px solid rgba(56, 189, 248, 0.35);
+  background: #0a0d14;
 }
 
 .intro-logomark__fallback {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: var(--bg-tertiary, #161b26);
+  border: 2px solid rgba(56, 189, 248, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 800;
   color: var(--accent, #38bdf8);
 }
@@ -111,17 +135,16 @@
 
 /* ==========================================================================
    PROGRESS BAR
-   Thin, clean, no percentage label, no status text.
-   The bar itself communicates everything.
+   Thin, clean, communicating load completion
    ========================================================================== */
 .intro-progress {
-  width: 180px;
+  width: 190px;
 }
 
 .intro-progress__track {
   width: 100%;
   height: 3px;
-  background: var(--bg-tertiary, rgba(255, 255, 255, 0.08));
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 3px;
   overflow: hidden;
 }
@@ -130,25 +153,18 @@
   height: 100%;
   background: var(--accent, #38bdf8);
   border-radius: 3px;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
   transition: width 0.06s linear;
 }
 
 /* ==========================================================================
-   RESPONSIVE
+   RESPONSIVE DESIGN
    ========================================================================== */
 @media (max-width: 640px) {
-  .intro-logomark {
-    width: 88px;
-    height: 88px;
-  }
-
-  .intro-logomark__img {
-    width: 52px;
-    height: 52px;
-  }
-
+  .intro-logomark__img,
   .intro-logomark__fallback {
-    font-size: 1.4rem;
+    width: 76px;
+    height: 76px;
   }
 
   .intro-wordmark {
