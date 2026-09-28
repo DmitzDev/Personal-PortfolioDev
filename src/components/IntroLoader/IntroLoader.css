@@ -1,6 +1,6 @@
 /* ==========================================================================
-   INTRO LOADER WITH 3D BACKGROUND
-   Confident, quiet, hand-crafted.
+   INTRO LOADER — PROFESSIONAL SOFTWARE ENGINEERING CONSOLE
+   Clean, architectural, zero-fluff, hardware-accelerated.
    ========================================================================== */
 
 /* Overlay — fixed full viewport */
@@ -11,28 +11,63 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: transparent;
+  background: #080a0f;
   user-select: none;
   -webkit-user-select: none;
   overflow: hidden;
 }
 
 /* ==========================================================================
-   3D BACKGROUND CANVAS
+   ENGINEERING BACKGROUND MATRIX
    ========================================================================== */
-.intro-bg-canvas {
+.intro-matrix-bg {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   z-index: 2;
   pointer-events: none;
-  opacity: 1;
-  transition: opacity 0.5s ease;
+  overflow: hidden;
+  transition: opacity 0.4s ease;
 }
 
-.intro-loader.is-revealing .intro-bg-canvas {
+.intro-loader.is-revealing .intro-matrix-bg {
   opacity: 0;
+}
+
+/* Subtle radial spotlight aura behind the center console */
+.intro-spotlight {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(56, 189, 248, 0.08) 0%,
+    rgba(14, 165, 233, 0.03) 35%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* Architectural Dot Matrix & Coordinate Grid */
+.intro-grid-layer {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 32px 32px, 96px 96px, 96px 96px;
+  background-position: center center;
+  opacity: 0.85;
+}
+
+/* Circuit crosshair lines */
+.intro-circuit-lines {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(to bottom, transparent calc(50% - 1px), rgba(56, 189, 248, 0.06) calc(50%), transparent calc(50% + 1px)),
+    linear-gradient(to right, transparent calc(50% - 1px), rgba(56, 189, 248, 0.06) calc(50%), transparent calc(50% + 1px));
 }
 
 /* ==========================================================================
@@ -43,7 +78,7 @@
   left: 0;
   width: 100%;
   height: 50.5vh;
-  background: var(--bg-primary, #0a0d14);
+  background: #090c12;
   z-index: 1;
   will-change: transform;
   transition: transform 0.82s cubic-bezier(0.76, 0, 0.24, 1);
@@ -51,10 +86,12 @@
 
 .intro-curtain--top {
   top: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .intro-curtain--bottom {
   bottom: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* When revealing, curtains slide away */
@@ -67,94 +104,165 @@
 }
 
 /* ==========================================================================
-   CENTER CONTENT — circular logo, wordmark, progress bar
+   CENTER CONSOLE CONTENT
    ========================================================================== */
 .intro-center {
   position: relative;
-  z-index: 3;
+  z-index: 4;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.4rem;
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  gap: 1.25rem;
+  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .intro-loader.is-revealing .intro-center {
   opacity: 0;
-  transform: scale(0.96);
+  transform: scale(0.96) translateY(-8px);
 }
 
-/* Logo mark — circular logo without unwanted container borders underneath */
+/* Logo Mark Wrapper with Soft Ambient Glow */
+.intro-logomark-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.intro-logomark-aura {
+  position: absolute;
+  inset: -16px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, transparent 70%);
+  filter: blur(12px);
+  pointer-events: none;
+  animation: auraBreath 3s ease-in-out infinite;
+}
+
+@keyframes auraBreath {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.15); opacity: 1; }
+}
+
 .intro-logomark {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1;
 }
 
 .intro-logomark__img {
-  width: 96px;
-  height: 96px;
+  width: 92px;
+  height: 92px;
   border-radius: 50%;
   object-fit: cover;
   display: block;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(56, 189, 248, 0.25);
-  border: 2px solid rgba(56, 189, 248, 0.35);
-  background: #0a0d14;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(56, 189, 248, 0.25);
+  border: 2px solid rgba(56, 189, 248, 0.4);
+  background: #090c12;
 }
 
 .intro-logomark__fallback {
-  width: 96px;
-  height: 96px;
+  width: 92px;
+  height: 92px;
   border-radius: 50%;
-  background: var(--bg-tertiary, #161b26);
-  border: 2px solid rgba(56, 189, 248, 0.35);
+  background: #11141c;
+  border: 2px solid rgba(56, 189, 248, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 1.6rem;
+  font-size: 1.55rem;
   font-weight: 800;
   color: var(--accent, #38bdf8);
 }
 
-/* Wordmark — clean, large, confident */
+/* Identity & Role */
+.intro-identity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
 .intro-wordmark {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif;
-  font-size: 2rem;
+  font-size: 2.1rem;
   font-weight: 700;
-  letter-spacing: -0.03em;
-  color: var(--text-primary, #f0f4f8);
-  line-height: 1;
+  letter-spacing: -0.035em;
+  color: #f1f5f9;
+  line-height: 1.1;
 }
 
 .intro-wordmark__accent {
   color: var(--accent, #38bdf8);
 }
 
+.intro-role-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
 /* ==========================================================================
-   PROGRESS BAR
-   Thin, clean, communicating load completion
+   PROGRESS CONSOLE INSTRUMENT
    ========================================================================== */
-.intro-progress {
-  width: 190px;
+.intro-progress-console {
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
 }
 
 .intro-progress__track {
   width: 100%;
-  height: 3px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 3px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
   overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 .intro-progress__fill {
   height: 100%;
-  background: var(--accent, #38bdf8);
-  border-radius: 3px;
-  box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+  background: linear-gradient(90deg, #0284c7, #38bdf8);
+  border-radius: 9999px;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.7);
   transition: width 0.06s linear;
+}
+
+.intro-progress__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  color: #64748b;
+  letter-spacing: 0.04em;
+}
+
+.intro-progress__status {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.intro-status-pulse {
+  color: var(--accent, #38bdf8);
+  font-weight: 800;
+}
+
+.intro-progress__percent {
+  color: var(--accent, #38bdf8);
+  font-weight: 700;
 }
 
 /* ==========================================================================
@@ -163,15 +271,20 @@
 @media (max-width: 640px) {
   .intro-logomark__img,
   .intro-logomark__fallback {
-    width: 76px;
-    height: 76px;
+    width: 78px;
+    height: 78px;
   }
 
   .intro-wordmark {
     font-size: 1.75rem;
   }
 
-  .intro-progress {
-    width: 150px;
+  .intro-role-tag {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+  }
+
+  .intro-progress-console {
+    width: 190px;
   }
 }
