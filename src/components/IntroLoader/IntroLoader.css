@@ -1,375 +1,184 @@
 /* ==========================================================================
-   MINIMALIST DEVELOPER INTRO — CLEAN & UNCLUTTERED
+   INTRO LOADER
+   Confident, quiet, hand-crafted. Nothing to prove.
    ========================================================================== */
 
-.clean-intro-overlay {
+/* Overlay — solid dark background, full viewport */
+.intro-loader {
   position: fixed;
   inset: 0;
   z-index: 9999999;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #07090e;
-  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg-primary, #0a0d14);
+  cursor: pointer;
   user-select: none;
-  overflow: hidden;
-  pointer-events: all;
+  -webkit-user-select: none;
 }
 
 /* ==========================================================================
-   DUAL BLAST DOORS (SHUTTERS)
+   CURTAINS — split reveal on exit
+   Two halves slide apart to expose the portfolio behind.
+   Uses the same cubic-bezier as Apple's sheet dismiss.
    ========================================================================== */
-.clean-shutter {
+.intro-curtain {
   position: absolute;
   left: 0;
   width: 100%;
-  height: 50.5vh;
-  background-color: #0a0d14;
-  transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+  height: 50%;
+  background: var(--bg-primary, #0a0d14);
+  z-index: 2;
   will-change: transform;
-  z-index: 1;
+  transition: transform 0.82s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
-.clean-shutter-top {
-  top: 0;
-  border-bottom: 1px solid rgba(56, 189, 248, 0.3);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.9);
-}
-
-.clean-shutter-bottom {
-  bottom: 0;
-  border-top: 1px solid rgba(56, 189, 248, 0.3);
-  box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.9);
-}
-
-.shutter-laser-line {
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent 15%, #38bdf8 50%, transparent 85%);
-}
-
-.clean-shutter-top .shutter-laser-line {
-  bottom: 0;
-}
-
-.clean-shutter-bottom .shutter-laser-line {
+.intro-curtain--top {
   top: 0;
 }
 
-/* EXIT ANIMATION */
-.clean-intro-overlay.intro-exiting .clean-shutter-top {
-  transform: translateY(-101%);
+.intro-curtain--bottom {
+  bottom: 0;
 }
 
-.clean-intro-overlay.intro-exiting .clean-shutter-bottom {
-  transform: translateY(101%);
+/* When revealing, curtains slide away */
+.intro-loader.is-revealing .intro-curtain--top {
+  transform: translateY(-100%);
 }
 
-.clean-intro-overlay.intro-exiting .clean-console-card {
-  opacity: 0;
-  transform: scale(1.04);
-  filter: blur(8px);
-  transition: opacity 0.45s ease, transform 0.45s ease, filter 0.45s ease;
-}
-
-.clean-intro-overlay.intro-exiting .clean-skip-btn {
-  opacity: 0;
-  transition: opacity 0.3s ease;
+.intro-loader.is-revealing .intro-curtain--bottom {
+  transform: translateY(100%);
 }
 
 /* ==========================================================================
-   MINIMALIST SKIP BUTTON
+   CENTER CONTENT — logo, wordmark, progress bar
+   Stacked vertically, perfectly centered, nothing extra.
    ========================================================================== */
-.clean-skip-btn {
-  position: absolute;
-  top: 2rem;
-  right: 2rem;
-  z-index: 10;
-  padding: 0.45rem 0.9rem;
-  border-radius: 9999px;
-  background: rgba(18, 24, 38, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #94a3b8;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.72rem;
-  font-weight: 500;
-  cursor: pointer;
-  backdrop-filter: blur(8px);
-  transition: all 0.2s ease;
-}
-
-.clean-skip-btn span {
-  color: #38bdf8;
-  font-size: 0.65rem;
-  margin-left: 0.2rem;
-}
-
-.clean-skip-btn:hover {
-  background: rgba(56, 189, 248, 0.15);
-  border-color: #38bdf8;
-  color: #ffffff;
-}
-
-/* ==========================================================================
-   MAIN TERMINAL CARD
-   ========================================================================== */
-.clean-console-card {
+.intro-center {
   position: relative;
-  z-index: 5;
-  width: 90%;
-  max-width: 520px;
-  background: #0d111a;
-  border: 1px solid rgba(56, 189, 248, 0.2);
-  border-radius: 0.85rem;
-  overflow: hidden;
-  box-shadow: 
-    0 25px 60px rgba(0, 0, 0, 0.9),
-    0 0 35px rgba(56, 189, 248, 0.08);
+  z-index: 3;
   display: flex;
   flex-direction: column;
-}
-
-/* Window Titlebar */
-.clean-window-titlebar {
-  display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0.65rem 1rem;
-  background: #080b11;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  gap: 1.5rem;
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-.window-dots {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
+.intro-loader.is-revealing .intro-center {
+  opacity: 0;
+  transform: scale(0.96);
 }
 
-.dot {
-  width: 10px;
-  height: 10px;
+/* Logo mark — simple circle with the logo image, no glow, no ring */
+.intro-logomark {
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
-}
-
-.dot-red { background: #ff5f56; }
-.dot-yellow { background: #ffbd2e; }
-.dot-green { background: #27c93f; }
-
-.window-title-text {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.7rem;
-  color: #64748b;
-  letter-spacing: 0.03em;
-}
-
-.window-dots-spacer {
-  width: 40px;
-}
-
-/* Identity Section */
-.clean-identity-row {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-  padding: 1.6rem 1.75rem 1.25rem 1.75rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.clean-logo-frame {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: #07090f;
-  border: 1px solid rgba(56, 189, 248, 0.35);
+  background: var(--bg-tertiary, #161b26);
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.1));
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 18px rgba(56, 189, 248, 0.2);
-  flex-shrink: 0;
+  box-shadow: var(--skeuo-extruded-sm, 0 2px 8px rgba(0,0,0,0.5));
 }
 
-.clean-logo-img {
-  width: 32px;
-  height: 32px;
+.intro-logomark__img {
+  width: 34px;
+  height: 34px;
   object-fit: contain;
 }
 
-.clean-logo-text {
+.intro-logomark__fallback {
   font-family: 'JetBrains Mono', monospace;
   font-size: 1.1rem;
   font-weight: 800;
-  color: #38bdf8;
+  color: var(--accent, #38bdf8);
 }
 
-.clean-brand-info {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.clean-brand-name {
+/* Wordmark — clean, large, confident */
+.intro-wordmark {
   margin: 0;
-  font-size: 1.9rem;
-  font-weight: 800;
-  letter-spacing: -0.025em;
-  color: #ffffff;
-  line-height: 1.1;
-}
-
-.clean-accent-text {
-  color: #38bdf8;
-}
-
-.clean-brand-sub {
-  margin: 0;
-  font-size: 0.78rem;
-  color: #8c9ba8;
-  font-weight: 500;
-}
-
-/* Clean Terminal Stream */
-.clean-terminal-terminal {
-  padding: 1.25rem 1.75rem;
-  background: #07090f;
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
-  min-height: 130px;
-  font-family: 'JetBrains Mono', monospace;
-}
-
-.clean-log-line {
-  font-size: 0.75rem;
-  color: #cbd5e1;
-  animation: cleanFadeIn 0.2s ease-out both;
-}
-
-.clean-log-line.is-command {
-  color: #94a3b8;
-}
-
-@keyframes cleanFadeIn {
-  from { opacity: 0; transform: translateY(3px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.clean-cursor-line {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-  margin-top: 0.1rem;
-}
-
-.clean-prompt {
-  color: #38bdf8;
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif;
+  font-size: 2rem;
   font-weight: 700;
-  font-size: 0.75rem;
+  letter-spacing: -0.03em;
+  color: var(--text-primary, #f0f4f8);
+  line-height: 1;
 }
 
-.clean-cursor {
-  color: #38bdf8;
-  font-weight: 800;
-  animation: cleanBlink 0.75s infinite alternate;
-}
-
-@keyframes cleanBlink {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-/* Simple Progress Bar & Percentage */
-.clean-progress-block {
-  padding: 1.25rem 1.75rem 1.5rem 1.75rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-  background: #0b0e16;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.clean-progress-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 0.75rem;
-}
-
-.clean-loading-status {
-  color: #718096;
-  font-size: 0.72rem;
-  font-weight: 500;
-}
-
-.clean-percentage-num {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: #38bdf8;
-  font-variant-numeric: tabular-nums;
-}
-
-.clean-track {
-  width: 100%;
-  height: 5px;
-  background: #07080d;
-  border-radius: 9999px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.clean-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #0284c7, #38bdf8);
-  border-radius: 9999px;
-  box-shadow: 0 0 10px rgba(56, 189, 248, 0.8);
-  transition: width 0.08s linear;
+.intro-wordmark__accent {
+  color: var(--accent, #38bdf8);
 }
 
 /* ==========================================================================
-   RESPONSIVE DESIGN (MOBILE ADAPTATION)
+   PROGRESS BAR
+   Thin, clean, no percentage label, no status text.
+   The bar itself communicates everything.
+   ========================================================================== */
+.intro-progress {
+  width: 180px;
+}
+
+.intro-progress__track {
+  width: 100%;
+  height: 3px;
+  background: var(--bg-tertiary, rgba(255, 255, 255, 0.08));
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.intro-progress__fill {
+  height: 100%;
+  background: var(--accent, #38bdf8);
+  border-radius: 3px;
+  transition: width 0.06s linear;
+}
+
+/* ==========================================================================
+   SKIP HINT
+   Quiet, unobtrusive, disappears on reveal.
+   ========================================================================== */
+.intro-skip-hint {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.75rem;
+  color: var(--text-muted, #5e6b7d);
+  letter-spacing: 0.02em;
+  transition: opacity 0.3s ease;
+}
+
+.intro-loader.is-revealing .intro-skip-hint {
+  opacity: 0;
+}
+
+/* ==========================================================================
+   RESPONSIVE
    ========================================================================== */
 @media (max-width: 640px) {
-  .clean-skip-btn {
-    top: 1.25rem;
-    right: 1.25rem;
+  .intro-logomark {
+    width: 52px;
+    height: 52px;
   }
 
-  .clean-console-card {
-    width: 92%;
+  .intro-logomark__img {
+    width: 28px;
+    height: 28px;
   }
 
-  .clean-identity-row {
-    padding: 1.25rem 1.25rem 1rem 1.25rem;
-    gap: 1rem;
+  .intro-wordmark {
+    font-size: 1.7rem;
   }
 
-  .clean-logo-frame {
-    width: 46px;
-    height: 46px;
+  .intro-progress {
+    width: 140px;
   }
 
-  .clean-logo-img {
-    width: 26px;
-    height: 26px;
-  }
-
-  .clean-brand-name {
-    font-size: 1.5rem;
-  }
-
-  .clean-brand-sub {
+  .intro-skip-hint {
+    bottom: 2rem;
     font-size: 0.7rem;
-  }
-
-  .clean-terminal-terminal {
-    padding: 1rem 1.25rem;
-    font-size: 0.7rem;
-    min-height: 110px;
-  }
-
-  .clean-progress-block {
-    padding: 1rem 1.25rem 1.25rem 1.25rem;
   }
 }
