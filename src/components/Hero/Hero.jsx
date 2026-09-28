@@ -52,11 +52,11 @@ export function Hero() {
           </div>
 
           <h1 className="hero-title">
-            Building <span className="title-accent">fast, modern</span> web apps & digital products.
+            Hi, I'm <span className="title-accent">{personalInfo.name}</span> — Front-End Web Developer.
           </h1>
 
           <p className="hero-description">
-            I'm <strong>{personalInfo.name} ({personalInfo.nickname})</strong>. I design, build, and deploy production-ready web platforms with modern React, scalable Node.js/Firebase backends, and responsive tactile interfaces.
+            You can call me <strong>{personalInfo.nickname}</strong>. I design and build fast, responsive, and interactive web applications using modern React, JavaScript, and clean UI/UX engineering. I turn designs and ideas into dependable, smooth digital experiences.
           </p>
 
           {/* Tactile Metric Gauges */}
