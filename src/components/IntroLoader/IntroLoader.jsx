@@ -20,16 +20,6 @@ export function IntroLoader({ onFinish }) {
   }, [onFinish]);
 
   useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape' || e.key === ' ' || e.key === 'Enter') {
-        finishIntro();
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [finishIntro]);
-
-  useEffect(() => {
     document.body.style.overflow = 'hidden';
 
     // Eased progress that feels organic — starts slow, accelerates, then decelerates
@@ -71,7 +61,6 @@ export function IntroLoader({ onFinish }) {
   return (
     <div
       className={`intro-loader ${isRevealing ? 'is-revealing' : ''}`}
-      onClick={finishIntro}
       aria-label="Loading"
     >
       {/* Top half curtain */}
@@ -110,8 +99,6 @@ export function IntroLoader({ onFinish }) {
         </div>
       </div>
 
-      {/* Quiet skip hint */}
-      <span className="intro-skip-hint">Press any key to skip</span>
     </div>
   );
 }

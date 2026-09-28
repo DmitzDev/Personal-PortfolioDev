@@ -12,7 +12,6 @@
   align-items: center;
   justify-content: center;
   background: var(--bg-primary, #0a0d14);
-  cursor: pointer;
   user-select: none;
   -webkit-user-select: none;
 }
@@ -135,27 +134,6 @@
 }
 
 /* ==========================================================================
-   SKIP HINT
-   Quiet, unobtrusive, disappears on reveal.
-   ========================================================================== */
-.intro-skip-hint {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 3;
-  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif;
-  font-size: 0.75rem;
-  color: var(--text-muted, #5e6b7d);
-  letter-spacing: 0.02em;
-  transition: opacity 0.3s ease;
-}
-
-.intro-loader.is-revealing .intro-skip-hint {
-  opacity: 0;
-}
-
-/* ==========================================================================
    RESPONSIVE
    ========================================================================== */
 @media (max-width: 640px) {
@@ -175,10 +153,5 @@
 
   .intro-progress {
     width: 140px;
-  }
-
-  .intro-skip-hint {
-    bottom: 2rem;
-    font-size: 0.7rem;
   }
 }
