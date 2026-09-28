@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { IntroLoader } from './components/IntroLoader/IntroLoader';
 import { Navbar } from './components/Navbar/Navbar';
 import { Hero } from './components/Hero/Hero';
 import { Projects } from './components/Projects/Projects';
@@ -11,8 +12,13 @@ import { ScrollToTop } from './components/shared/ScrollToTop';
 import './index.css';
 
 function App() {
+  const [introFinished, setIntroFinished] = useState(false);
+
   return (
     <div className="app-container">
+      {!introFinished && (
+        <IntroLoader onFinish={() => setIntroFinished(true)} />
+      )}
       <Navbar />
       <main>
         <Hero />
