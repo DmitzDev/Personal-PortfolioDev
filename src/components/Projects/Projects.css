@@ -279,10 +279,6 @@
   display: none !important;
 }
 
-.mobile-btn-text {
-  display: none;
-}
-
 .project-card-actions {
   display: flex;
   align-items: center;
@@ -695,14 +691,6 @@
 
   .project-details-btn:active {
     box-shadow: var(--skeuo-recessed);
-  }
-
-  .project-details-btn .desktop-btn-text {
-    display: none;
-  }
-
-  .project-details-btn .mobile-btn-text {
-    display: inline;
   }
 
   .modal-dialog {

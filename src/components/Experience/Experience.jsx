@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Briefcase, GraduationCap, Award, FileText, CheckCircle2, Calendar, MapPin } from 'lucide-react';
+import { Briefcase, GraduationCap, Award, FileText, Calendar, MapPin } from 'lucide-react';
 import { experience } from '../../data/experience';
 import { education } from '../../data/education';
 import { certificates, achievements } from '../../data/certificates';
@@ -62,96 +62,97 @@ export function Experience() {
 
         {/* TAB 1: WORK EXPERIENCE */}
         {activeTab === 'experience' && (
-          <div className="timeline-container">
-            {experience.map((item, index) => (
-              <AnimateOnScroll
-                key={item.id}
-                animation="fade-up"
-                delay={index * 80}
-                className="timeline-card glass-card"
-              >
-                <div className="timeline-card-header">
-                  <div className="timeline-title-wrap">
-                    <span className="timeline-type-pill">{item.type}</span>
-                    <h3 className="timeline-role">{item.position}</h3>
-                    <h4 className="timeline-company">{item.company}</h4>
-                  </div>
-                  <div className="timeline-meta-wrap">
-                    <span className="timeline-meta-item">
-                      <Calendar size={14} />
-                      {item.duration}
-                    </span>
-                    {item.location && (
-                      <span className="timeline-meta-item">
-                        <MapPin size={14} />
-                        {item.location}
+          <div className="credentials-view">
+            <div className="credentials-grid exp-cards-grid">
+              {experience.map((item, index) => (
+                <AnimateOnScroll
+                  key={item.id}
+                  animation="fade-up"
+                  delay={index * 80}
+                  className="cert-card exp-card glass-card"
+                >
+                  <div className="cert-body exp-card-body">
+                    <div className="exp-card-header-meta">
+                      <span className="cert-issuer">{item.company}</span>
+                      <span className="timeline-type-pill">{item.type}</span>
+                    </div>
+
+                    <h3 className="cert-title exp-card-title">{item.position}</h3>
+
+                    <div className="exp-meta-bar">
+                      <span className="cert-date exp-date-meta">
+                        <Calendar size={13} />
+                        {item.duration}
                       </span>
+                      {item.location && (
+                        <span className="cert-date exp-location-meta">
+                          <MapPin size={13} />
+                          {item.location}
+                        </span>
+                      )}
+                    </div>
+
+                    <p className="cert-desc exp-card-desc">{item.description}</p>
+
+                    {item.tech && (
+                      <div className="cert-skills-wrap exp-tech-wrap">
+                        {item.tech.map(tech => (
+                          <span key={tech} className="tech-pill">{tech}</span>
+                        ))}
+                      </div>
                     )}
                   </div>
-                </div>
-
-                <ul className="timeline-responsibilities">
-                  {item.responsibilities.map((resp, idx) => (
-                    <li key={idx}>
-                      <CheckCircle2 size={15} className="resp-icon" />
-                      <span>{resp}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {item.tech && (
-                  <div className="timeline-tech-wrap">
-                    {item.tech.map(tech => (
-                      <span key={tech} className="tech-pill">{tech}</span>
-                    ))}
-                  </div>
-                )}
-              </AnimateOnScroll>
-            ))}
+                </AnimateOnScroll>
+              ))}
+            </div>
           </div>
         )}
 
         {/* TAB 2: EDUCATION */}
         {activeTab === 'education' && (
-          <div className="timeline-container">
-            {education.map((item, index) => (
-              <AnimateOnScroll
-                key={item.id}
-                animation="fade-up"
-                delay={index * 80}
-                className="timeline-card glass-card"
-              >
-                <div className="timeline-card-header">
-                  <div className="timeline-title-wrap">
-                    <span className="timeline-type-pill academic">{item.status}</span>
-                    <h3 className="timeline-role">{item.degree}</h3>
-                    <h4 className="timeline-company">{item.school}</h4>
-                  </div>
-                  <div className="timeline-meta-wrap">
-                    <span className="timeline-meta-item">
-                      <Calendar size={14} />
-                      {item.year}
-                    </span>
-                  </div>
-                </div>
-
-                <p className="academic-description">{item.description}</p>
-
-                {item.awards && item.awards.length > 0 && (
-                  <div className="academic-awards">
-                    <span className="awards-label">Recognitions:</span>
-                    <div className="awards-tags">
-                      {item.awards.map((award, idx) => (
-                        <span key={idx} className="award-pill">
-                          <Award size={13} />
-                          {award}
-                        </span>
-                      ))}
+          <div className="credentials-view">
+            <div className="credentials-grid edu-cards-grid">
+              {education.map((item, index) => (
+                <AnimateOnScroll
+                  key={item.id}
+                  animation="fade-up"
+                  delay={index * 80}
+                  className="cert-card edu-card glass-card"
+                >
+                  <div className="cert-body exp-card-body">
+                    <div className="exp-card-header-meta">
+                      <span className="cert-issuer">{item.school}</span>
+                      <span className="timeline-type-pill academic">{item.status}</span>
                     </div>
+
+                    <h3 className="cert-title exp-card-title">{item.degree}</h3>
+
+                    <div className="exp-meta-bar">
+                      <span className="cert-date exp-date-meta">
+                        <Calendar size={13} />
+                        {item.year}
+                      </span>
+                    </div>
+
+                    <p className="academic-description exp-academic-desc">{item.description}</p>
+
+                    {item.awards && item.awards.length > 0 && (
+                      <div className="academic-awards exp-awards-wrap">
+                        <span className="awards-label">Recognitions:</span>
+                        <div className="awards-tags">
+                          {item.awards.map((award, idx) => (
+                            <span key={idx} className="award-pill">
+                              <Award size={12} />
+                              {award}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
-                )}
-              </AnimateOnScroll>
-            ))}
+                </AnimateOnScroll>
+              ))}
+            </div>
           </div>
         )}
 

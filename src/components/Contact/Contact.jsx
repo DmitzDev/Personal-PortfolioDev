@@ -61,7 +61,7 @@ export function Contact() {
           <div className="section-tag">GET IN TOUCH</div>
           <h2 className="section-title">Let's Build Something Exceptional</h2>
           <p className="section-subtitle">
-            Whether you have an upcoming web project, need an MVP engineered, or want to discuss full-stack contracting — my inbox is open.
+            Whether you have an upcoming web project, need a front-end MVP engineered, or want to discuss front-end contracting — my inbox is open.
           </p>
         </div>
 
@@ -173,7 +173,7 @@ export function Contact() {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    placeholder="e.g. Full-Stack Web App Development"
+                    placeholder="e.g. Front-End Web App Development"
                   />
                 </div>
 

@@ -154,8 +154,7 @@ export function Projects() {
                       className="project-details-btn"
                       onClick={() => setSelectedProject(project)}
                     >
-                      <span className="desktop-btn-text">Project Details →</span>
-                      <span className="mobile-btn-text">Details →</span>
+                      Details →
                     </button>
                   </div>
                 </div>

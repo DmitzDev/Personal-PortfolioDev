@@ -21,7 +21,7 @@ export function Skills() {
           <div className="section-tag">TECHNICAL ARCHITECTURE</div>
           <h2 className="section-title">Core Engineering Capabilities</h2>
           <p className="section-subtitle">
-            Focused on scalable full-stack development, modern component architecture, and high-performance cloud databases.
+            Focused on modern front-end development, responsive component architecture, and high-performance cloud databases.
           </p>
         </div>
 

@@ -74,7 +74,166 @@
   box-shadow: var(--skeuo-recessed);
 }
 
-/* Timeline Layout */
+/* Experience & Education Card Grids */
+.exp-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.75rem;
+  margin-bottom: 3.5rem;
+}
+
+.edu-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+  margin-bottom: 3.5rem;
+}
+
+.exp-card,
+.edu-card {
+  border-radius: 1rem;
+  overflow: hidden;
+  background: var(--bg-secondary);
+  box-shadow: var(--skeuo-extruded);
+  border-top: 1px solid var(--skeuo-bevel-top);
+  border-bottom: 1px solid var(--skeuo-bevel-bottom);
+  border-left: var(--skeuo-border);
+  border-right: var(--skeuo-border);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.exp-card:hover,
+.edu-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--skeuo-extruded-hover);
+}
+
+.exp-card-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.exp-card-header-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-type-pill {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.725rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--bg-tertiary);
+  box-shadow: var(--skeuo-recessed-sm);
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.35rem;
+}
+
+.timeline-type-pill.academic {
+  color: #10b981;
+}
+
+.exp-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.35rem;
+  line-height: 1.3;
+}
+
+.exp-meta-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-bottom: 0.75rem;
+}
+
+.exp-date-meta,
+.exp-location-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 0;
+}
+
+.exp-card-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-bottom: 1.25rem;
+  flex: 1;
+}
+
+.exp-tech-wrap {
+  margin-top: auto;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+/* Academic specific styles */
+.exp-academic-desc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  flex: 1;
+}
+
+.exp-awards-wrap {
+  margin-top: auto;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.awards-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.awards-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.award-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #f59e0b;
+  background: var(--bg-tertiary);
+  box-shadow: var(--skeuo-recessed-sm);
+  padding: 0.25rem 0.6rem;
+  border-radius: 0.35rem;
+}
+
+/* Legacy Timeline Layout fallback */
 .timeline-container {
   display: flex;
   flex-direction: column;
@@ -107,24 +266,6 @@
   flex-wrap: wrap;
   gap: 1rem;
   margin-bottom: 1.25rem;
-}
-
-.timeline-type-pill {
-  display: inline-block;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.725rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: var(--accent);
-  background: var(--bg-tertiary);
-  box-shadow: var(--skeuo-recessed-sm);
-  padding: 0.2rem 0.6rem;
-  border-radius: 0.35rem;
-  margin-bottom: 0.5rem;
-}
-
-.timeline-type-pill.academic {
-  color: #10b981;
 }
 
 .timeline-role {
@@ -172,62 +313,12 @@
   line-height: 1.6;
 }
 
-.resp-icon {
-  color: #10b981;
-  flex-shrink: 0;
-  margin-top: 3px;
-}
-
 .timeline-tech-wrap {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
   padding-top: 1rem;
   border-top: 1px solid var(--border);
-}
-
-/* Academic specific styles */
-.academic-description {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
-  margin-bottom: 1.25rem;
-}
-
-.academic-awards {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--border);
-}
-
-.awards-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--text-muted);
-}
-
-.awards-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
-
-.award-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #f59e0b;
-  background: var(--bg-tertiary);
-  box-shadow: var(--skeuo-recessed-sm);
-  padding: 0.25rem 0.6rem;
-  border-radius: 0.35rem;
 }
 
 /* Credentials Grid */
@@ -537,16 +628,82 @@
     line-height: 1.45;
   }
 
-  /* 2-column mobile grid for credentials */
-  .credentials-grid {
+  /* 2-column mobile grid for experience, education, and credentials */
+  .credentials-grid,
+  .exp-cards-grid,
+  .edu-cards-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.75rem;
     margin-bottom: 2.25rem;
   }
 
-  .cert-card {
+  .cert-card,
+  .exp-card,
+  .edu-card {
     border-radius: 0.75rem;
     min-width: 0;
+  }
+
+  .exp-card-body {
+    padding: 0.85rem 0.7rem;
+  }
+
+  .exp-card-header-meta {
+    gap: 0.35rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .exp-card-title {
+    font-size: 0.88rem;
+    line-height: 1.25;
+    margin-bottom: 0.25rem;
+  }
+
+  .exp-meta-bar {
+    gap: 0.45rem;
+    margin-bottom: 0.45rem;
+  }
+
+  .exp-date-meta,
+  .exp-location-meta {
+    font-size: 0.62rem;
+  }
+
+  .exp-card-desc {
+    font-size: 0.7rem;
+    line-height: 1.35;
+    margin-bottom: 0.5rem;
+    flex: 1;
+  }
+
+  .exp-tech-wrap {
+    padding-top: 0.55rem;
+    gap: 0.25rem;
+  }
+
+  .exp-tech-wrap .tech-pill {
+    font-size: 0.58rem;
+    padding: 0.15rem 0.35rem;
+  }
+
+  .exp-academic-desc {
+    font-size: 0.72rem;
+    line-height: 1.4;
+    margin-bottom: 0.65rem;
+  }
+
+  .exp-awards-wrap {
+    padding-top: 0.55rem;
+    gap: 0.35rem;
+  }
+
+  .exp-awards-wrap .awards-label {
+    font-size: 0.62rem;
+  }
+
+  .exp-awards-wrap .award-pill {
+    font-size: 0.6rem;
+    padding: 0.15rem 0.35rem;
   }
 
   .cert-image-preview {
@@ -626,5 +783,11 @@
 
   .ach-year {
     font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .edu-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
