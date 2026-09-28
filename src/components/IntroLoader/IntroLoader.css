@@ -68,28 +68,28 @@
   transform: scale(0.96);
 }
 
-/* Logo mark — simple circle with the logo image, no glow, no ring */
+/* Logo mark — prominent, elegant, well-proportioned */
 .intro-logomark {
-  width: 64px;
-  height: 64px;
+  width: 112px;
+  height: 112px;
   border-radius: 50%;
   background: var(--bg-tertiary, #161b26);
-  border: 1px solid var(--border, rgba(255, 255, 255, 0.1));
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.12));
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--skeuo-extruded-sm, 0 2px 8px rgba(0,0,0,0.5));
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(56, 189, 248, 0.08);
 }
 
 .intro-logomark__img {
-  width: 34px;
-  height: 34px;
+  width: 68px;
+  height: 68px;
   object-fit: contain;
 }
 
 .intro-logomark__fallback {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 1.1rem;
+  font-size: 1.8rem;
   font-weight: 800;
   color: var(--accent, #38bdf8);
 }
@@ -138,20 +138,24 @@
    ========================================================================== */
 @media (max-width: 640px) {
   .intro-logomark {
+    width: 88px;
+    height: 88px;
+  }
+
+  .intro-logomark__img {
     width: 52px;
     height: 52px;
   }
 
-  .intro-logomark__img {
-    width: 28px;
-    height: 28px;
+  .intro-logomark__fallback {
+    font-size: 1.4rem;
   }
 
   .intro-wordmark {
-    font-size: 1.7rem;
+    font-size: 1.75rem;
   }
 
   .intro-progress {
-    width: 140px;
+    width: 150px;
   }
 }
