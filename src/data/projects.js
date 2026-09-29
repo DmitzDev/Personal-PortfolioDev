@@ -1,3 +1,4 @@
+import cvStudioImg from '../assets/CVStudio.png';
 import mitchBlogImg from '../assets/MitchBlog.png';
 import NarutoMonopolyImg from '../assets/Monopoly.png';
 import PortfolioImg from '../assets/Portfolio.png';
@@ -6,6 +7,31 @@ import tambayanLogoImg from '../assets/tambayan_t_logo.png';
 export const projects = [
   {
     id: 1,
+    title: "CV Studio",
+    subtitle: "Real-Time Curriculum Vitae Builder & Vector PDF Engine",
+    category: ["Personal Projects", "Web Applications"],
+    role: "Full-Stack Developer & UI Architect",
+    timeline: "2026",
+    status: "In Progress",
+    featured: true,
+    description: "An intuitive web application for creating, customizing, and exporting professional resumes in real-time. Features live dual-pane layout customization, font controls, theme accent palettes, and vector PDF compilation.",
+    challenge: "Traditional resume generators often lock formatting behind subscriptions, have rigid layouts, and lack responsive live previewing for different screen sizes and printer viewports.",
+    solution: "Built a high-performance reactive web application with instant split-pane previewing, modular section builders (experience, education, summary), responsive layout switching, and client-side PDF export.",
+    metrics: "Instant live preview • Clean vector-grade PDF • 100% Client-side privacy",
+    technologies: ["React", "JavaScript ES6+", "Modern CSS", "HTML5 Print API", "Vite"],
+    features: [
+      "Real-time dual-pane form and live resume synchronization",
+      "Dynamic styling controls: Layouts (Single / 2-Col), Accent colors, and Font families",
+      "One-click high-resolution PDF download and clear/sample preset loaders",
+      "Structured schema for Personal Info, Experience, Education, and Skills",
+      "Optimized mobile and desktop responsive interface",
+    ],
+    image: cvStudioImg,
+    liveDemo: "https://cvbuildermd.vercel.app/",
+    github: "https://github.com/DmitzDev/CV-Builder_MD",
+  },
+  {
+    id: 2,
     title: "MDev. | Blog",
     subtitle: "Full-Stack Content Management & Real-Time Publishing Platform",
     category: ["School Projects", "Web Applications"],
@@ -30,7 +56,7 @@ export const projects = [
     github: "https://github.com/DmitzDev/Mitch-Dev-Blog",
   },
   {
-    id: 2,
+    id: 3,
     title: "Naruto-Monopoly Game",
     subtitle: "Complex State Machine & Interactive Board Simulation",
     category: ["School Projects", "Web Applications"],
@@ -54,7 +80,7 @@ export const projects = [
     github: "https://github.com/DmitzDev/Naruto-Monopoly-MitchDev.",
   },
   {
-    id: 3,
+    id: 4,
     title: "Tambayan App",
     subtitle: "Cross-Platform Social & Real-Time Community Hub",
     category: ["Mobile Apps", "School Projects"],
@@ -78,7 +104,7 @@ export const projects = [
     github: "https://github.com/DmitzDev",
   },
   {
-    id: 4,
+    id: 5,
     title: "Personal Portfolio",
     subtitle: "Modern Web Showcase with Zero-Bloat Architecture",
     category: ["Personal Projects", "Web Applications"],
