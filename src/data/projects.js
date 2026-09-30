@@ -12,7 +12,7 @@ export const projects = [
     category: ["Personal Projects", "Web Applications"],
     role: "Full-Stack Developer & UI Architect",
     timeline: "2026",
-    status: "In Progress",
+    status: "Completed",
     featured: true,
     description: "An intuitive web application for creating, customizing, and exporting professional resumes in real-time. Features live dual-pane layout customization, font controls, theme accent palettes, and vector PDF compilation.",
     challenge: "Traditional resume generators often lock formatting behind subscriptions, have rigid layouts, and lack responsive live previewing for different screen sizes and printer viewports.",
