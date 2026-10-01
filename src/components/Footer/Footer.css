@@ -192,7 +192,7 @@
   }
 
   .footer-bottom {
-    padding: 1.5rem 0;
+    padding: 1.5rem 0 calc(5.5rem + env(safe-area-inset-bottom, 0px)) 0;
     gap: 0.5rem;
     font-size: 0.8rem;
   }

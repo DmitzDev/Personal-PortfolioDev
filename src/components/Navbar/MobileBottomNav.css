@@ -30,9 +30,7 @@
     margin: 0 auto;
     background: var(--bg-secondary);
     border-radius: 0.85rem;
-    box-shadow:
-      var(--skeuo-extruded-sm),
-      0 8px 24px rgba(0, 0, 0, 0.35);
+    box-shadow: var(--skeuo-extruded);
     border-top: 1px solid var(--skeuo-bevel-top);
     border-bottom: 1px solid var(--skeuo-bevel-bottom);
     border-left: var(--skeuo-border);

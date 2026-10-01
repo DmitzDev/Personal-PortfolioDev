@@ -56,34 +56,34 @@ export function Hero() {
           </h1>
 
           <p className="hero-description">
-            You can call me <strong>{personalInfo.nickname}</strong>. I design and build fast, responsive, and interactive web applications using modern React, JavaScript, and clean UI/UX engineering. I turn designs and ideas into dependable, smooth digital experiences.
+            Computer engineering undergraduate and front-end developer building fast, responsive web applications with modern React, clean state management, and tactile user interfaces. I turn functional ideas into dependable, production-ready software.
           </p>
 
-          {/* Tactile Metric Gauges */}
+          {/* Authentic Engineering Gauges */}
           <div className="hero-gauges-grid">
             <div className="gauge-card">
-              <span className="gauge-val">15+</span>
-              <span className="gauge-label">Shipped Builds</span>
+              <span className="gauge-val">5</span>
+              <span className="gauge-label">Live Web Apps</span>
             </div>
             <div className="gauge-card">
-              <span className="gauge-val">&lt; 24h</span>
-              <span className="gauge-label">Response SLA</span>
+              <span className="gauge-val">CpE</span>
+              <span className="gauge-label">Computer Eng.</span>
             </div>
             <div className="gauge-card">
-              <span className="gauge-val">100%</span>
-              <span className="gauge-label">Clean Architecture</span>
+              <span className="gauge-val">React</span>
+              <span className="gauge-label">Core Ecosystem</span>
             </div>
           </div>
 
           {/* Physical Buttons */}
           <div className="hero-actions">
             <a href="#projects" className="btn-primary">
-              <span>View Projects</span>
+              <span>Explore Projects</span>
               <ArrowRight size={17} />
             </a>
             <a href="#contact" className="btn-secondary">
               <Mail size={17} />
-              <span>Initiate Contact</span>
+              <span>Get in Touch</span>
             </a>
             <a
               href={personalInfo.resumeUrl}
@@ -156,7 +156,7 @@ export function Hero() {
             <div className="hardware-spec-plate">
               <div className="spec-row-main">
                 <span className="spec-name">{personalInfo.name.toUpperCase()} • DEVELOPER</span>
-                <span className="spec-tag">JUNIOR FRONT-END</span>
+                <span className="spec-tag">FRONT-END &amp; CpE</span>
               </div>
               <div className="spec-divider"></div>
               <div className="spec-items-grid">

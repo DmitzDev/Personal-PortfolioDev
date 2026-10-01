@@ -55,10 +55,10 @@ export const achievements = [
   {
     id: 3,
     title: "Production Software Deployments",
-    description: "Architected, tested, and published 15+ real-world web apps, mobile builds, and open-source tools.",
+    description: "Architected, tested, and published verified web applications and open-source tools with active live demos.",
     year: "2024 – Present",
     icon: "Rocket",
-    metric: "15+ Shipped",
+    metric: "5 Deployed",
   },
   {
     id: 4,

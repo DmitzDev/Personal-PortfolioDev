@@ -282,12 +282,15 @@
 
   .form-group input,
   .form-group textarea {
-    padding: 0.75rem 0.85rem;
-    font-size: 0.85rem;
+    padding: 0.85rem 1rem;
+    font-size: 16px; /* Prevents unwanted iOS Safari viewport auto-zoom */
+    border-radius: 0.55rem;
   }
 
   .submit-btn {
-    padding: 0.85rem;
-    font-size: 0.85rem;
+    min-height: 48px;
+    padding: 0.85rem 1.25rem;
+    font-size: 0.95rem;
+    font-weight: 700;
   }
 }

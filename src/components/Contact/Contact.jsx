@@ -71,7 +71,7 @@ export function Contact() {
             <div className="contact-info-card glass-card">
               <h3 className="info-card-title">Get in Touch Directly</h3>
               <p className="info-card-desc">
-                Prefer direct communication over filling out forms? Feel free to copy my direct email or connect through WhatsApp.
+                Prefer direct communication over filling out forms? Feel free to copy my direct email below or reach out via GitHub.
               </p>
 
               {/* Quick Copy Email Box */}

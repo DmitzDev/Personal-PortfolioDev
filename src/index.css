@@ -1,73 +1,79 @@
 :root {
-  /* Skeuomorphic Light Theme - Precision Hardware Aluminum & Crisp Matte */
-  --bg-primary: #e6ebf2;
-  --bg-secondary: #edf2f8;
-  --bg-tertiary: #dce3ec;
-  --text-primary: #151922;
-  --text-secondary: #4a5568;
-  --text-muted: #718096;
+  /* Skeuomorphic Light Theme - Precision Studio Aluminum & Architectural Contrast */
+  --bg-primary: #e2e8f0;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #d3dbe6;
+  --bg-elevated: #f8fafc;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
   --accent: #0284c7;
   --accent-hover: #0369a1;
-  --accent-light: rgba(2, 132, 199, 0.1);
+  --accent-light: rgba(2, 132, 199, 0.12);
   --accent-text: #ffffff;
   
-  /* Physical Skeuomorphic Surface Shadows */
-  --skeuo-extruded: 5px 5px 12px #c2c9d3, -4px -4px 10px #ffffff;
-  --skeuo-extruded-sm: 3px 3px 7px #c8cfd9, -2px -2px 5px #ffffff;
-  --skeuo-extruded-hover: 7px 7px 16px #bbc2cc, -5px -5px 12px #ffffff;
-  --skeuo-recessed: inset 3px 3px 6px #c4cbd5, inset -2px -2px 5px #ffffff;
-  --skeuo-recessed-sm: inset 2px 2px 4px #c8cfd9, inset -1px -1px 3px #ffffff;
-  --skeuo-btn: linear-gradient(145deg, #f3f7fc, #e4eaf1);
-  --skeuo-btn-active: linear-gradient(145deg, #dce2eb, #edf3fa);
-  --skeuo-border: 1px solid rgba(255, 255, 255, 0.8);
-  --skeuo-bevel-top: rgba(255, 255, 255, 0.9);
-  --skeuo-bevel-bottom: rgba(160, 172, 188, 0.4);
+  /* Physical Skeuomorphic Surface Shadows - Light Mode */
+  --skeuo-extruded: 0 1px 3px rgba(15, 23, 42, 0.08), 0 10px 24px -4px rgba(100, 116, 139, 0.25), 0 0 0 1px rgba(15, 23, 42, 0.08);
+  --skeuo-extruded-sm: 0 1px 3px rgba(15, 23, 42, 0.06), 0 4px 12px -2px rgba(100, 116, 139, 0.18), 0 0 0 1px rgba(15, 23, 42, 0.07);
+  --skeuo-extruded-hover: 0 4px 12px -2px rgba(15, 23, 42, 0.08), 0 18px 36px -6px rgba(100, 116, 139, 0.32), 0 0 0 1px rgba(2, 132, 199, 0.4);
+  --skeuo-recessed: inset 0 2px 4px rgba(15, 23, 42, 0.12), inset 0 0 1px rgba(15, 23, 42, 0.16), 0 1px 0 rgba(255, 255, 255, 0.9);
+  --skeuo-recessed-sm: inset 0 1px 3px rgba(15, 23, 42, 0.1), inset 0 0 1px rgba(15, 23, 42, 0.14);
+  --skeuo-btn: linear-gradient(145deg, #ffffff, #edf2f7);
+  --skeuo-btn-active: linear-gradient(145deg, #d3dbe6, #e2e8f0);
+  --skeuo-border: 1px solid rgba(100, 116, 139, 0.28);
+  --skeuo-bevel-top: rgba(255, 255, 255, 0.95);
+  --skeuo-bevel-bottom: rgba(100, 116, 139, 0.45);
   
-  --border: rgba(160, 172, 188, 0.35);
-  --border-focus: rgba(2, 132, 199, 0.6);
-  --badge-bg: #dce3ec;
-  --badge-text: #0369a1;
+  --border: rgba(100, 116, 139, 0.28);
+  --border-focus: rgba(2, 132, 199, 0.7);
+  --badge-bg: #d3dbe6;
+  --badge-text: #0284c7;
   
   --led-green: #10b981;
-  --led-glow: 0 0 8px #10b981, 0 0 16px rgba(16, 185, 129, 0.5);
+  --led-glow: 0 0 8px #10b981, 0 0 16px rgba(16, 185, 129, 0.4);
   
-  --nav-active-bg: var(--bg-tertiary);
+  --bg-nav-scrolled: rgba(226, 232, 240, 0.92);
+  --skeuo-nav-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.1);
+  --nav-active-bg: #ffffff;
   --nav-active-text: #0284c7;
 }
 
 [data-theme="dark"] {
-  /* Skeuomorphic Dark Theme - Anodized Dark Graphite / Hardware Chassis */
-  --bg-primary: #12151c;
-  --bg-secondary: #171b24;
-  --bg-tertiary: #0e1117;
-  --text-primary: #f0f4f8;
-  --text-secondary: #9aa5b6;
-  --text-muted: #5e6b7d;
+  /* Bespoke Architectural Dark Theme - Obsidian Titanium & Precision Hardware */
+  --bg-primary: #090a0f;
+  --bg-secondary: #0f121a;
+  --bg-tertiary: #151924;
+  --bg-elevated: #1b2130;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
   --accent: #38bdf8;
   --accent-hover: #7dd3fc;
-  --accent-light: rgba(56, 189, 248, 0.1);
+  --accent-light: rgba(56, 189, 248, 0.12);
   --accent-text: #0a0f1d;
   
   /* Physical Skeuomorphic Surface Shadows */
-  --skeuo-extruded: 6px 6px 14px #0a0c11, -3px -3px 8px #222836;
-  --skeuo-extruded-sm: 3px 3px 8px #0b0d12, -2px -2px 5px #202633;
-  --skeuo-extruded-hover: 8px 8px 18px #08090d, -4px -4px 10px #272e3e;
-  --skeuo-recessed: inset 3px 3px 7px #090b0f, inset -2px -2px 5px #222734;
-  --skeuo-recessed-sm: inset 2px 2px 4px #090b0f, inset -1px -1px 3px #1f2532;
-  --skeuo-btn: linear-gradient(145deg, #1b202a, #141720);
-  --skeuo-btn-active: linear-gradient(145deg, #11141b, #191d26);
-  --skeuo-border: 1px solid rgba(255, 255, 255, 0.06);
-  --skeuo-bevel-top: rgba(255, 255, 255, 0.08);
-  --skeuo-bevel-bottom: rgba(0, 0, 0, 0.6);
+  --skeuo-extruded: 0 1px 1px rgba(255, 255, 255, 0.08) inset, 0 10px 30px -5px rgba(0, 0, 0, 0.65), 0 2px 6px rgba(0, 0, 0, 0.4);
+  --skeuo-extruded-sm: 0 1px 1px rgba(255, 255, 255, 0.08) inset, 0 4px 14px -2px rgba(0, 0, 0, 0.55);
+  --skeuo-extruded-hover: 0 1px 1px rgba(255, 255, 255, 0.14) inset, 0 16px 36px -6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(56, 189, 248, 0.12);
+  --skeuo-recessed: inset 0 2px 6px rgba(0, 0, 0, 0.65), inset 0 0 1px rgba(0, 0, 0, 0.9), 0 1px 0 rgba(255, 255, 255, 0.04);
+  --skeuo-recessed-sm: inset 0 2px 4px rgba(0, 0, 0, 0.55), inset 0 0 1px rgba(0, 0, 0, 0.8);
+  --skeuo-btn: linear-gradient(145deg, #181d2a, #11141e);
+  --skeuo-btn-active: linear-gradient(145deg, #0e1118, #141824);
+  --skeuo-border: 1px solid rgba(255, 255, 255, 0.08);
+  --skeuo-bevel-top: rgba(255, 255, 255, 0.12);
+  --skeuo-bevel-bottom: rgba(0, 0, 0, 0.7);
   
   --border: rgba(255, 255, 255, 0.08);
   --border-focus: rgba(56, 189, 248, 0.6);
-  --badge-bg: #0e1117;
+  --badge-bg: #151924;
   --badge-text: #38bdf8;
   
   --led-green: #10b981;
-  --led-glow: 0 0 8px #10b981, 0 0 16px rgba(16, 185, 129, 0.5);
+  --led-glow: 0 0 8px #10b981, 0 0 14px rgba(16, 185, 129, 0.45);
   
+  --bg-nav-scrolled: rgba(9, 10, 15, 0.92);
+  --skeuo-nav-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.6);
   --nav-active-bg: var(--bg-tertiary);
   --nav-active-text: #38bdf8;
 }
@@ -88,6 +94,8 @@ html {
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background-color: var(--bg-primary);
+  background-image: radial-gradient(rgba(100, 116, 139, 0.18) 1px, transparent 1px);
+  background-size: 24px 24px;
   color: var(--text-primary);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -97,6 +105,10 @@ body {
   max-width: 100%;
   width: 100%;
   position: relative;
+}
+
+[data-theme="dark"] body {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
 }
 
 #root,
@@ -257,56 +269,59 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  background: var(--skeuo-btn);
-  color: var(--accent);
+  gap: 0.55rem;
+  background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
+  color: #ffffff !important;
   font-weight: 700;
   font-size: 0.95rem;
-  padding: 0.85rem 1.6rem;
+  padding: 0.85rem 1.65rem;
   border-radius: 0.65rem;
-  box-shadow: var(--skeuo-extruded-sm);
-  border-top: 1px solid var(--skeuo-bevel-top);
-  border-bottom: 1px solid var(--skeuo-bevel-bottom);
-  border-left: var(--skeuo-border);
-  border-right: var(--skeuo-border);
-  transition: all 0.15s ease;
+  box-shadow: 0 4px 16px -2px rgba(2, 132, 199, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
 }
 
 .btn-primary:hover {
-  color: var(--text-primary);
-  box-shadow: var(--skeuo-extruded);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -4px rgba(2, 132, 199, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+  color: #ffffff !important;
 }
 
 .btn-primary:active {
-  background: var(--skeuo-btn-active);
-  box-shadow: var(--skeuo-recessed);
   transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.4);
 }
 
 .btn-secondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.55rem;
   background: var(--bg-tertiary);
-  color: var(--text-secondary);
+  color: var(--text-primary);
   font-weight: 600;
   font-size: 0.95rem;
-  padding: 0.85rem 1.6rem;
+  padding: 0.85rem 1.65rem;
   border-radius: 0.65rem;
   box-shadow: var(--skeuo-extruded-sm);
   border-top: 1px solid var(--skeuo-bevel-top);
   border-bottom: 1px solid var(--skeuo-bevel-bottom);
-  transition: all 0.15s ease;
+  border-left: var(--skeuo-border);
+  border-right: var(--skeuo-border);
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
 }
 
 .btn-secondary:hover {
   color: var(--text-primary);
   box-shadow: var(--skeuo-extruded);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
 }
 
 .btn-secondary:active {
+  background: var(--skeuo-btn-active);
   box-shadow: var(--skeuo-recessed);
   transform: translateY(1px);
 }
